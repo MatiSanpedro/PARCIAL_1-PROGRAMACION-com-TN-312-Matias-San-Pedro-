@@ -289,7 +289,7 @@ def ordenar_descendente(lista_a:list, lista_b:list, lista_c:list)->list:
     
     return lista_de_retorno
 
-#SORT PROPIO
+#SORT PROPIO  (hecho en clase)
 def ordenar(lista_a:list, lista_b:list, lista_c:list, primer_modo = 1, segundo_modo= 1) -> None:
 
     for i in range(0, len(lista_a)-1, 1):
@@ -459,11 +459,7 @@ def validar_datos_genero(genero:str):
     return bandera
     
 
-'''
-def buscar_vacio(lista:list)
-    
-    while True:
-    '''
+
 
 
 
@@ -489,6 +485,11 @@ def ingresar_notas(nombres:str,matriz_magna:list)-> list:
 
 
 
+
+
+
+
+
 #MENU DE OPCIONES COMPLETO
 def menu() -> int:
     while True:
@@ -505,7 +506,8 @@ def menu() -> int:
         
         match opcion_elegida:
             case "1":
-                print("opción 1 asdasdad")
+                print("esto está vacio jaja, selecciona otra  \n")
+
             case "2":
                 mostrar = mostrar_datos(nombres,legajos,generos,matriz_notas)
                 print(mostrar)
@@ -514,9 +516,48 @@ def menu() -> int:
                 prom2 = imprimir_promedio_y_nombre(promedios_filas,nombres)
                 
             case "4":
-                print("opción 4")
+                while True:  
+                    decision1 = int(input("1.-Mostrar datos de manera ascendente\n 2.-Mostrar datos de manera descendente\n 3.-Volver Atras   "))
+                    
+                    if decision1 ==1:
+                        promedios = promedios_alumnos(matriz_notas)
+                        mostrar_todos_1 = ordenar_ascendente_por_promedio(nombres,legajos,generos,matriz_notas,promedios)
+                        print(mostrar_todos_1)
+
+                    if decision1 ==2:
+                        promedios = promedios_alumnos(matriz_notas)
+                        mostrar_todos_2 = ordenar_descendente_por_promedio(nombres,legajos,generos,matriz_notas,promedios)
+                        print(mostrar_todos_2)
+                            
+
+                    if decision1 ==3:
+                        print("saliendo de opcion 4")
+                        break    
+                    elif (decision1 != 1 and decision1 != 2 and decision1 !=3 ): 
+                        print("incorrecto, vuelva a ingresar una de las dos opciones señaladas     ")
+                
+
             case "5":
-                print("opción 5")
+                while True:
+                    decision2 = int(input("Elegir una opcion:\n1.-Mostrar los promedios de las materias\n 2.-Mostrar la materia con mayor promedio\n 3.- Salir de la opcion 5   "))
+                    if decision2 == 1:
+                        imprimir_datos2 = mostrar_promedio_por_columnas_general(matriz_notas)
+                        mostrar_bien = imprimir_todos_los_promedios(imprimir_datos2)
+                        print(mostrar_bien)
+
+                    if decision2 ==2:
+                        imprimir_datos3 = mostrar_promedio_por_columnas_general(matriz_notas)
+                        muestra_datos = el_mayor_en_listas(imprimir_datos3)
+                        
+                        print(f"MATERIA_1   {muestra_datos} MATERIA_2   {muestra_datos}")
+
+                    if decision2 ==3:
+                        print("saliendo de opcion 5  ")
+                        break   
+
+                    elif (decision2 != 1 and decision2 != 2 and decision2 !=3 ): 
+                        print("NUMERO INCORRECTO, vuelva a ingresar una de las opciones señaladas     ")
+
             case "6":
                 bifurcacion = int(input("Que desea buscar?\n 1- Mostrar los datos de un alumno por legajo" 
                 "\n 2- Mostrar los datos de todos los alumnos "))
@@ -525,13 +566,15 @@ def menu() -> int:
                 if bifurcacion ==2:
                     promedios = promedios_alumnos(matriz_notas)
                     mostrar_todos = mostrar_todos_punto_6(nombres,legajos,generos,matriz_notas,promedios)
+
+
             case "7":
-                print("opción 7")
+                print("incompleto  ")
             case "8":
                 print("--Saliendo del programa--")
                 break
             case _:
-                print("Opcion no valida, ingrese un numero dentro de los especificados.")
+                print("Opcion no valida, ingrese un numero dentro de los especificados.   ")
 
     return int(opcion_elegida)    
 
@@ -662,6 +705,22 @@ def mostrar_promedio_por_columnas_general(matriz_notas:list)->list:
 lista_promedios = mostrar_promedio_por_columnas_general(matriz_notas)
 
 
+#funcion para imprimir prolijamente los promedios 
+def imprimir_todos_los_promedios(lista:list):
+    copia = 0
+    titular = "MATERIA_"
+
+    for i in range(len(lista)):
+        lista[i] = round(lista[i],1) #quiero que tenga solo un decimal 
+        copia = lista[i] 
+        
+        print(f"{titular}{i+1}  {copia}")  
+
+
+
+
+
+
 # averigua el numero mayor en listas
 def el_mayor_en_listas(lista:list)-> list:
     numero_mayor = [0] 
@@ -677,14 +736,8 @@ llamar = el_mayor_en_listas(lista_promedios)
 
 #####################
 
-#encontrar indice 
-'''
-guardar_indice = []
 
-for i in range(len(matriz_notas)):
-    guardar_indice = [i]
 
-    '''
 
 
 def buscar_alumno_por_legajo():
@@ -896,7 +949,9 @@ def ordenar_singular_ascendente(lista:list)->list:
             
 
     return lista
-    
+
+
+
 
 # ORDENAR SINGULAR DESCENDENTE 
 def ordenar_singular_descendente(lista:list)->list:
@@ -913,17 +968,61 @@ def ordenar_singular_descendente(lista:list)->list:
 
 
 
+#meter espacios en lista? 
+
+
+
+
+
+
+
+
 
 
 #pruebas
+copia_de_lista = copiar_lista(prom)
+
+      
+
+
+
+#copia de lista 
+
 copia_de_lista = copiar_lista(prom)
 
 
-llamar1 = ordenar_singular_ascendente(copia_de_lista)
+def ordenar_ascendente_por_promedio(lista_generos: list, lista_nombres: list, lista_legajos: list, lista_notas: list, lista_promedios: list) -> list:
+    
+    for i in range(0, len(lista_promedios) - 1):
+        for j in range(i + 1, len(lista_promedios)):
+            
+            if lista_promedios[i] > lista_promedios[j]:
+                
+                promedio_auxiliar = lista_promedios[i]
+                lista_promedios[i] = lista_promedios[j]
+                lista_promedios[j] = promedio_auxiliar
+                
+                genero_auxiliar = lista_generos[i]
+                lista_generos[i] = lista_generos[j]
+                lista_generos[j] = genero_auxiliar
+                
+                nombre_auxiliar = lista_nombres[i]
+                lista_nombres[i] = lista_nombres[j]
+                lista_nombres[j] = nombre_auxiliar
 
-llamar2 = ordenar_singular_descendente(prom)
-           
-#print(llamar1,llamar2)
+                legajo_auxiliar = lista_legajos[i]
+                lista_legajos[i] = lista_legajos[j]
+                lista_legajos[j] = legajo_auxiliar
+
+                nota_auxiliar = lista_notas[i]
+                lista_notas[i] = lista_notas[j]
+                lista_notas[j] = nota_auxiliar
+
+    resultado = []
+    for i in range(len(lista_promedios)):
+        resultado += [(lista_generos[i], lista_nombres[i], lista_legajos[i], lista_notas[i], lista_promedios[i])]
+
+    return resultado
 
 
 
@@ -931,11 +1030,65 @@ llamar2 = ordenar_singular_descendente(prom)
 
 
 
+#ordenar descendente por promedio 
 
-#PENDIENTE
+def ordenar_descendente_por_promedio(lista_generos: list, lista_nombres: list, lista_legajos: list, lista_notas: list, lista_promedios: list) -> list:
+    
+    for i in range(0, len(lista_promedios) - 1):
+        for j in range(i + 1, len(lista_promedios)):
+            
+            if lista_promedios[i] < lista_promedios[j]:
+                
+                promedio_auxiliar = lista_promedios[i]
+                lista_promedios[i] = lista_promedios[j]
+                lista_promedios[j] = promedio_auxiliar
+                
+                genero_auxiliar = lista_generos[i]
+                lista_generos[i] = lista_generos[j]
+                lista_generos[j] = genero_auxiliar
+                
+                nombre_auxiliar = lista_nombres[i]
+                lista_nombres[i] = lista_nombres[j]
+                lista_nombres[j] = nombre_auxiliar
 
-#armar un ordenador de una sola matriz (la de los promedios) listo V
-#vincular esos promedios a su respectivo indice de nombres,legajos,genero etc
-#imprimirlos bonito con otra puta funcion
+                legajo_auxiliar = lista_legajos[i]
+                lista_legajos[i] = lista_legajos[j]
+                lista_legajos[j] = legajo_auxiliar
 
-#pendiente este, el punto 5 y el 7 
+                nota_auxiliar = lista_notas[i]
+                lista_notas[i] = lista_notas[j]
+                lista_notas[j] = nota_auxiliar
+
+    resultado = []
+    for i in range(len(lista_promedios)):
+        resultado += [(lista_generos[i], lista_nombres[i], lista_legajos[i], lista_notas[i], lista_promedios[i])]
+
+    return resultado
+
+
+
+#el punto 7 
+
+def encontrar_repeticiones_materias(lista:list,numero:int):
+        
+    valor_guardado_1 = 0
+    valor_guardado_2 = 0 
+    contador_repeticiones = 0
+    devolucion = []
+    for i in range(len(lista)):
+        valor_guardado_1 = lista[i]
+
+        for j in range(len(valor_guardado_2)):
+            if valor_guardado_2[j] == valor_guardado_1:
+                contador_repeticiones[j] +=1
+    
+    for k in range(len(valor_guardado_2)):
+        devolucion += [valor_guardado_2[i],contador_repeticiones]
+
+    return devolucion
+
+
+
+        
+            
+
