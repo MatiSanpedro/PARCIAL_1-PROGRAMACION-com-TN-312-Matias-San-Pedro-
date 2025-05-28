@@ -1,9 +1,6 @@
 from mis_funciones import * 
 import random
 #EL PRACTICO - Matias San Pedro
-from mis_funciones import * 
-import random
-#EL PRACTICO - Matias San Pedro
 
 # EL PRACTICO 20/5
 
@@ -85,31 +82,13 @@ generos = ["F","M","F","M","M","X","M","F","F","M","F","F","F","M","F"
            ,"F","F","X","F","F","X","F","F","M","M","M","M","M","M","F"
            ,]
 
+promedios = promedios_alumnos(matriz_notas)
 
-
-
-
-#nombre_ingresado = input("ingrese nombre  ")
-#edad_ingresada = int(input("ingrese edad"))
-#legajo_ingresado = int(input("ngrese legajo"))
-#genero_ingresado = input("ingrese genero")
-
-
-#prueba = validar_datos_edad(ingresar_notas(nombre_ingresado,matriz_magna))
-
-#salida = input('datos guardados exitosamente, desea continuar? \n ingrese "terminar" para salir')
-
-
-promedio = promedios_alumnos(matriz_notas)
-
-
-guardar_indice = []
-
-'''
-for i in range(len(legajos)):
-    guardar_indice = [i]
-    print(guardar_indice)
-'''
 
 menudeop = menu()
 print(menudeop)
+
+
+
+
+
