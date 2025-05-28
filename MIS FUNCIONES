@@ -80,8 +80,9 @@ def copiar_lista(lista_a:list, lista_b:list)->list:
     
     return nombres_originales, edades_originales
 
+
 #ORDENAR ASCENDENTE 5 listas
-def ordenar_ascendente(lista_a:list, lista_b:list, lista_c:list,lista_d:list,lista_e:list)->list :
+def ordenar_ascendente_5(lista_a:list, lista_b:list, lista_c:list,lista_d:list,lista_e:list)->list : 
 
     for i in range(0, len(lista_a)-1, 1):
         
@@ -89,9 +90,9 @@ def ordenar_ascendente(lista_a:list, lista_b:list, lista_c:list,lista_d:list,lis
             
             if lista_c[i] > lista_c[j]:
             
-                edad_auxiliar = lista_b[i]
+                legajo_auxiliar = lista_b[i]
                 lista_b[i] = lista_b[j]
-                lista_b[j] = edad_auxiliar
+                lista_b[j] = legajo_auxiliar
 
                 nombre_auxiliar = lista_a[i]
                 lista_a[i] = lista_a[j]
@@ -111,21 +112,37 @@ def ordenar_ascendente(lista_a:list, lista_b:list, lista_c:list,lista_d:list,lis
 #2 criterio 
             elif lista_c[i] == lista_c[j]:
                 if lista_a[i] > lista_a[j]:
-                    edad_auxiliar = lista_b[i]
+
+                    legajo_auxiliar = lista_b[i]
                     lista_b[i] = lista_b[j]
-                    lista_b[j] = edad_auxiliar
+                    lista_b[j] = legajo_auxiliar
 
                     nombre_auxiliar = lista_a[i]
                     lista_a[i] = lista_a[j]
                     lista_a[j] = nombre_auxiliar
+
+                    nota_auxiliar = lista_d[i]
+                    lista_d[i] = lista_d[j]
+                    lista_d[j] = nota_auxiliar
+
+                    promedio_auxiliar = lista_e[i]
+                    lista_e[i] = lista_e[j]
+                    lista_e[j] = promedio_auxiliar
+
+                    genero_auxiliar = lista_c[i]
+                    lista_c[i] = lista_c[j]
+                    lista_c[j] = genero_auxiliar
+
+
+
     lista_de_retorno = []
     for i in range(len(lista_a)):
-        lista_de_retorno += [(lista_a[i], lista_b[i], lista_c[i])]
+        lista_de_retorno += [(lista_a[i], lista_b[i], lista_c[i],lista_d[i],lista_e[i])]
     
     return lista_de_retorno
 
 #ORDENAR DESCENDENTE 5 listas 
-def ordenar_descendente(lista_a:list, lista_b:list, lista_c:list)->list:
+def ordenar_descendente_5(lista_a:list, lista_b:list, lista_c:list,lista_d:list,lista_e:list)->list: #legajo B| nombre A| nota D| promedio E| genero C
 
     for i in range(0, len(lista_a)-1, 1):  #empiezo desde 0 hasta el largo de la lista  -1 lugar (porque el último no tiene con quien comparar)
         
@@ -133,30 +150,52 @@ def ordenar_descendente(lista_a:list, lista_b:list, lista_c:list)->list:
             
             if lista_c[i] < lista_c[j]:
             
-                edad_auxiliar = lista_b[i] #guardo lista b en edad auxiliar 
-                lista_b[i] = lista_b[j]     # comparo las posiciones
-                lista_b[j] = edad_auxiliar  #devuelvo el valor guardado de lista b 
+                legajo_auxiliar = lista_b[i]  
+                lista_b[i] = lista_b[j]     
+                lista_b[j] = legajo_auxiliar   
 
-                nombre_auxiliar = lista_a[i]
-                lista_a[i] = lista_a[j]
-                lista_a[j] = nombre_auxiliar
+                nombre_auxiliar = lista_a[i] #guardo lista a en nombre auxiliar
+                lista_a[i] = lista_a[j]       # comparo las posiciones
+                lista_a[j] = nombre_auxiliar  #devuelvo el valor guardado de lista a
+                
+                nota_auxiliar = lista_d[i]
+                lista_d[i] = lista_d[j]
+                lista_d[j] = nota_auxiliar
+                
+                promedio_auxiliar = lista_e[i]
+                lista_e[i] = lista_e[j]
+                lista_e[j] = promedio_auxiliar
 
                 genero_auxiliar = lista_c[i]
                 lista_c[i] = lista_c[j]
-                lista_c[j] = genero_auxiliar
+                lista_c[j] = genero_auxiliar              
+
+
 #2 criterio 
             elif lista_c[i] == lista_c[j]:
                 if lista_a[i] < lista_a[j]:
-                    edad_auxiliar = lista_b[i]
-                    lista_b[i] = lista_b[j]
-                    lista_b[j] = edad_auxiliar
+                    legajo_auxiliar = lista_b[i]  
+                    lista_b[i] = lista_b[j]     
+                    lista_b[j] = legajo_auxiliar   
 
-                    nombre_auxiliar = lista_a[i]
-                    lista_a[i] = lista_a[j]
-                    lista_a[j] = nombre_auxiliar
+                    nombre_auxiliar = lista_a[i] #guardo lista a en nombre auxiliar
+                    lista_a[i] = lista_a[j]       # comparo las posiciones
+                    lista_a[j] = nombre_auxiliar  #devuelvo el valor guardado de lista a
+                    
+                    nota_auxiliar = lista_d[i]
+                    lista_d[i] = lista_d[j]
+                    lista_d[j] = nota_auxiliar
+                    
+                    promedio_auxiliar = lista_e[i]
+                    lista_e[i] = lista_e[j]
+                    lista_e[j] = promedio_auxiliar
+                    
+                    genero_auxiliar = lista_c[i]
+                    lista_c[i] = lista_c[j]
+                    lista_c[j] = genero_auxiliar
     lista_de_retorno = []    
     for i in range(len(lista_a)):
-        lista_de_retorno += [(lista_a[i], lista_b[i], lista_c[i])] #quiero guardar aca las 3 cosas para devolverlo por return
+        lista_de_retorno += [(lista_a[i], lista_b[i], lista_c[i],lista_d[i],lista_e[i])] 
     
     return lista_de_retorno
 
@@ -831,3 +870,10 @@ def imprimir_promedio_y_nombre(promedio:list,nombre:list):
            
 
 
+#PENDIENTE
+
+#armar un ordenador de una sola matriz (la de los promedios)
+#vincular esos promedios a su respectivo indice de nombres,legajos,genero etc
+#imprimirlos bonito con otra puta funcion
+
+#pendiente este, el punto 5 y el 7 
