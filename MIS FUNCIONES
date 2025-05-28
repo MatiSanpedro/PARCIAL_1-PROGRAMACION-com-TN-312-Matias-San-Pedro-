@@ -80,6 +80,94 @@ def copiar_lista(lista_a:list, lista_b:list)->list:
     
     return nombres_originales, edades_originales
 
+#ORDENAR ASCENDENTE 5 listas
+def ordenar_ascendente(lista_a:list, lista_b:list, lista_c:list,lista_d:list,lista_e:list)->list :
+
+    for i in range(0, len(lista_a)-1, 1):
+        
+        for j in range(i + 1, len(lista_a), 1):
+            
+            if lista_c[i] > lista_c[j]:
+            
+                edad_auxiliar = lista_b[i]
+                lista_b[i] = lista_b[j]
+                lista_b[j] = edad_auxiliar
+
+                nombre_auxiliar = lista_a[i]
+                lista_a[i] = lista_a[j]
+                lista_a[j] = nombre_auxiliar
+
+                nota_auxiliar = lista_d[i]
+                lista_d[i] = lista_d[j]
+                lista_d[j] = nota_auxiliar
+
+                promedio_auxiliar = lista_e[i]
+                lista_e[i] = lista_e[j]
+                lista_e[j] = promedio_auxiliar
+
+                genero_auxiliar = lista_c[i]
+                lista_c[i] = lista_c[j]
+                lista_c[j] = genero_auxiliar
+#2 criterio 
+            elif lista_c[i] == lista_c[j]:
+                if lista_a[i] > lista_a[j]:
+                    edad_auxiliar = lista_b[i]
+                    lista_b[i] = lista_b[j]
+                    lista_b[j] = edad_auxiliar
+
+                    nombre_auxiliar = lista_a[i]
+                    lista_a[i] = lista_a[j]
+                    lista_a[j] = nombre_auxiliar
+    lista_de_retorno = []
+    for i in range(len(lista_a)):
+        lista_de_retorno += [(lista_a[i], lista_b[i], lista_c[i])]
+    
+    return lista_de_retorno
+
+#ORDENAR DESCENDENTE 5 listas 
+def ordenar_descendente(lista_a:list, lista_b:list, lista_c:list)->list:
+
+    for i in range(0, len(lista_a)-1, 1):  #empiezo desde 0 hasta el largo de la lista  -1 lugar (porque el último no tiene con quien comparar)
+        
+        for j in range(i + 1, len(lista_a), 1): # aca es lo inverso, j empieza desde i + 1 
+            
+            if lista_c[i] < lista_c[j]:
+            
+                edad_auxiliar = lista_b[i] #guardo lista b en edad auxiliar 
+                lista_b[i] = lista_b[j]     # comparo las posiciones
+                lista_b[j] = edad_auxiliar  #devuelvo el valor guardado de lista b 
+
+                nombre_auxiliar = lista_a[i]
+                lista_a[i] = lista_a[j]
+                lista_a[j] = nombre_auxiliar
+
+                genero_auxiliar = lista_c[i]
+                lista_c[i] = lista_c[j]
+                lista_c[j] = genero_auxiliar
+#2 criterio 
+            elif lista_c[i] == lista_c[j]:
+                if lista_a[i] < lista_a[j]:
+                    edad_auxiliar = lista_b[i]
+                    lista_b[i] = lista_b[j]
+                    lista_b[j] = edad_auxiliar
+
+                    nombre_auxiliar = lista_a[i]
+                    lista_a[i] = lista_a[j]
+                    lista_a[j] = nombre_auxiliar
+    lista_de_retorno = []    
+    for i in range(len(lista_a)):
+        lista_de_retorno += [(lista_a[i], lista_b[i], lista_c[i])] #quiero guardar aca las 3 cosas para devolverlo por return
+    
+    return lista_de_retorno
+
+
+
+
+
+
+
+
+
 #ORDENAR ASCENDENTE
 def ordenar_ascendente(lista_a:list, lista_b:list, lista_c:list)->list :
 
@@ -326,34 +414,11 @@ def validar_datos_genero(genero:str):
 def buscar_vacio(lista:list)
     
     while True:
-        notas = int(input("ingresar nota"))
-        fila_vacia = -1    #busca una fila vacia, uso esto porque ninguna fila vacia vale -1 
-        for i in range(len(matriz_magna)):
-            if matriz_magna[i] == [0] * 5:
-                fila_disponible = i   #guardo 
-
-
-                
-                break
-                for j in range(len(matriz_magna[0])):
-                    fila_marcela = notas
-                    matriz_magna[i][j] = fila_marcela
-                    print(fila_marcela)
-        if contador_nota >= len(fila_marcela):
-            print("no hay mas espacio")
-            break
-
-        respuesta = input("S para seguir cargando")
-        if respuesta != "s":
-            print(fila_marcela)
-            break       
     '''
 
 
-            
-            
 
-
+# ingresar notas
 def ingresar_notas(nombres:str,matriz_magna:list)-> list:
     fila_alumnos = 0  #esto controla las filas a donde se ponen los datos , 0 = marcela, 1 = pepe ,2 Florencia etc
     contador_notas = 0
@@ -371,51 +436,6 @@ def ingresar_notas(nombres:str,matriz_magna:list)-> list:
     return  matriz_magna
 
 
-'''
-# borrar esta mierda 
-
-
-def ingresar_notas(nombre, fila_disponible):
-    contador_notas = 0
-    acumulador_1 = 0
-    for j in range(5):
-        nota = int(input(f"Ingresar nota {j + 1} para {nombre}: "))
-        matriz_magna[fila_vacia][j] = nota
-        contador_notas += 1
-        acumulador_1 +=1
-    print(f" {nombre}: {matriz_magna[fila_vacia]}")
-    print("Fila de notas completa")
-    return fila_disponible + 1  # 
-
-
-
-
-while True:
-    nombres = input("Ingrese el nombre  ")
-    
-    match lower_propio(nombres):
-        case "marcela" | "pepe" | "sofia" | "juan" | "ana" | "luis": 
-            fila_disponible = ingresar_notas(nombres, fila_disponible)
-        
-        case _:
-            print("Nombre no reconocido.")
-
-    segunda_vuelta = input("¿Desea ingresar notas para otro alumno?\n's' = sí\ntecla = no\n> ")
-    if segunda:
-        break
-
-
-
- #pista ayuda para el promedio 
-promedio = (variable_suma / cantidad_alumnos) * 10 // 1
-        promedio = promedio / 10
-yo hice eso para calcular la materia
-
-
-'''
-
-
-
 
 
 
@@ -426,7 +446,7 @@ def menu() -> int:
         opcion_elegida = input("|--------------------------| Seleccione una opción: |--------------------------| \n"
             "1. Opción 1\n"
             "2. Mostrar todos los datos\n"
-            "3. Opción 3\n"
+            "3. mostrar el promedio de todos los alumnos\n"
             "4. Opción 4\n"
             "5. Opción 5\n"
             "6. Opción 6\n"
@@ -438,11 +458,12 @@ def menu() -> int:
             case "1":
                 print("opción 1 asdasdad")
             case "2":
-                mostrar = mostrar_datos(matriz_notas,generos,nombres,legajos)
+                mostrar = mostrar_datos(nombres,legajos,generos,matriz_notas)
                 print(mostrar)
             case "3":
                 promedios_filas = promedios_alumnos(matriz_notas)
-                print(promedios_filas)
+                prom2 = imprimir_promedio_y_nombre(promedios_filas,nombres)
+                
             case "4":
                 print("opción 4")
             case "5":
@@ -451,9 +472,10 @@ def menu() -> int:
                 bifurcacion = int(input("Que desea buscar?\n 1- Mostrar los datos de un alumno por legajo" 
                 "\n 2- Mostrar los datos de todos los alumnos "))
                 if bifurcacion ==1:
-                    llamada5 = buscar_alumno_por_legajo()
+                    busqueda = buscar_alumno_por_legajo()
                 if bifurcacion ==2:
-                    print("falta llenar esto")
+                    promedios = promedios_alumnos(matriz_notas)
+                    mostrar_todos = mostrar_todos_punto_6(nombres,legajos,generos,matriz_notas,promedios)
             case "7":
                 print("opción 7")
             case "8":
@@ -619,6 +641,7 @@ for i in range(len(matriz_notas)):
 def buscar_alumno_por_legajo():
 
     while True:  #este bucle repite la pregunta  de opciones2
+           
         opciones2 = int(input("ingrese el legajo del estudiante, ingrese '000' para salir  "))
         
         match opciones2:    # con esto voy según el legajo a cada una de las 30 opciones
@@ -659,7 +682,7 @@ def buscar_alumno_por_legajo():
             
             case 14000:
                 prom = promedios_alumnos(matriz_notas)
-                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print("Nombre\tGenero\tCalificaciones\t\t promedio")
                 print(f"{nombres[7]}, {generos[7]}, \t{matriz_notas[7]}\t {prom[7]}")
             
             case 11750:
@@ -760,7 +783,7 @@ def buscar_alumno_por_legajo():
             case 39250:
                 prom = promedios_alumnos(matriz_notas)
                 print("Nombre\tGenero\tCalificaciones\t promedio")
-                print(f"{nombres[27]}, {generos[27]}, \t{matriz_notas[27]}{prom[27]}")
+                print(f"{nombres[27]},\t {generos[27]}, \t{matriz_notas[27]}\t  {prom[27]}")
             
             case 18750:
                 prom = promedios_alumnos(matriz_notas)
@@ -776,9 +799,35 @@ def buscar_alumno_por_legajo():
                 False
                 print("--Saliendo de la opcion 6--")
                 break
-                
 
             case _:
                 print("legajo incorrecto o no válido, ingrese un numero de 5 cifras")
+       
+
+# mostrar todo + promedio  (el punto 6)
+def mostrar_todos_punto_6(lista_a:list, lista_b:list, lista_c:list, lista_d:list, lista_e:list):
+    
+
+    for i in range(len(lista_a)):
+
+        if len(lista_a[i]) < 8:
+            print("NOMBRE\t\tLEGAJO GENERO  \tNOTAS \t\t PROMEDIO")
+            print(f"{lista_a[i]}\t\t{lista_b[i]}\t{lista_c[i]}\t{lista_d[i]}  {lista_e[i]}")        
+        
+        else:
+            print("NOMBRE\t\tLEGAJO GENERO  \tNOTAS\t\t PROMEDIO")
+            print(f"{lista_a[i]}\t{lista_b[i]}\t{lista_c[i]}\t{lista_d[i]}  {lista_e[i]}")  
+
+
+
+
+#imprimir promedio + nombre (punto 3 )
+def imprimir_promedio_y_nombre(promedio:list,nombre:list):
+    for i in range(len(nombre)):
+        if len(nombre[i]) < 8: 
+            print("NOMBRE\t\tPROMEDIO")
+            print(f"{nombre[i]}\t\t{promedio[i]}")
+        
+           
 
 
