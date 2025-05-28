@@ -1,6 +1,9 @@
 from mis_funciones import * 
 import random
 #EL PRACTICO - Matias San Pedro
+from mis_funciones import * 
+import random
+#EL PRACTICO - Matias San Pedro
 
 # EL PRACTICO 20/5
 
@@ -74,7 +77,7 @@ edades = [12, 16, 15, 15, 13, 17, 13, 17, 17, 17, 17, 12, 16, 14, 14, 16, 16, 15
 
 legajos = [45500, 13000, 45750, 34500, 37750, 37250, 37500,
            14000, 11750, 26500, 43250, 21000, 46250, 10250,
-           14000, 26000, 28500, 25500,45500,40250, 15750,
+           14010, 26000, 28500, 25500,44500,40250, 15750,
            42500 ,33250 ,39750 ,36500 ,29750 ,40000 ,39250,
             18750, 40500]
 
@@ -98,5 +101,15 @@ generos = ["F","M","F","M","M","X","M","F","F","M","F","F","F","M","F"
 
 
 promedio = promedios_alumnos(matriz_notas)
-print(promedio)
 
+
+guardar_indice = []
+
+'''
+for i in range(len(legajos)):
+    guardar_indice = [i]
+    print(guardar_indice)
+'''
+
+menudeop = menu()
+print(menudeop)
