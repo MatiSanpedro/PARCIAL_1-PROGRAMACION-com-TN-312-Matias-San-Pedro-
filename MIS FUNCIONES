@@ -498,7 +498,7 @@ def menu() -> int:
             "2. Mostrar todos los datos\n"
             "3. Mostrar el promedio de todos los alumnos\n"
             "4. Mostrar datos por promedio ASCENDENTE-DESCENDENTE\n"
-            "5. Opción 5\n"
+            "5. Mostrar Materias Por Promedio\n"
             "6. Buscar un alumno por legajo\n"
             "7. Opción 7\n"
             "8. Salir\n"
@@ -559,13 +559,19 @@ def menu() -> int:
                         print("NUMERO INCORRECTO, vuelva a ingresar una de las opciones señaladas     ")
 
             case "6":
-                bifurcacion = int(input("Que desea buscar?\n 1- Mostrar los datos de un alumno por legajo" 
-                "\n 2- Mostrar los datos de todos los alumnos "))
-                if bifurcacion ==1:
-                    busqueda = buscar_alumno_por_legajo()
-                if bifurcacion ==2:
-                    promedios = promedios_alumnos(matriz_notas)
-                    mostrar_todos = mostrar_todos_punto_6(nombres,legajos,generos,matriz_notas,promedios)
+                while True:
+                    bifurcacion = int(input("Que desea buscar?\n 1- Mostrar los datos de un alumno por legajo" 
+                    "\n 2- Mostrar los datos de todos los alumnos\n  3.-  SALIR "))
+                    if bifurcacion ==1:
+                        busqueda = buscar_alumno_por_legajo()
+                    if bifurcacion ==2:
+                        promedios = promedios_alumnos(matriz_notas)
+                        mostrar_todos = mostrar_todos_punto_6(nombres,legajos,generos,matriz_notas,promedios)
+                    if bifurcacion ==3:
+                        print("SALIENDO de opcion 6")
+                        break
+                    elif (bifurcacion != 1 and bifurcacion !=2 and bifurcacion != 3):
+                        print("NUMERO INCORRECTO, vuelva a ingresar una de las opciones señaladas     ")
 
 
             case "7":
