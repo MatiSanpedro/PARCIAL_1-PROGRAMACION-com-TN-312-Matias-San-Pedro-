@@ -423,9 +423,9 @@ yo hice eso para calcular la materia
 #MENU DE OPCIONES COMPLETO
 def menu() -> int:
     while True:
-        opcion_elegida = input("|--------------------------| Elige una opción: |--------------------------| \n"
+        opcion_elegida = input("|--------------------------| Seleccione una opción: |--------------------------| \n"
             "1. Opción 1\n"
-            "2. Opción 2\n"
+            "2. Mostrar todos los datos\n"
             "3. Opción 3\n"
             "4. Opción 4\n"
             "5. Opción 5\n"
@@ -448,11 +448,16 @@ def menu() -> int:
             case "5":
                 print("opción 5")
             case "6":
-                print("opción 6")
+                bifurcacion = int(input("Que desea buscar?\n 1- Mostrar los datos de un alumno por legajo" 
+                "\n 2- Mostrar los datos de todos los alumnos "))
+                if bifurcacion ==1:
+                    llamada5 = buscar_alumno_por_legajo()
+                if bifurcacion ==2:
+                    print("falta llenar esto")
             case "7":
                 print("opción 7")
             case "8":
-                print("Saliendo del programa")
+                print("--Saliendo de la opcion 6--")
                 break
             case _:
                 print("Opcion no valida, ingrese un numero dentro de los especificados.")
@@ -491,7 +496,7 @@ def promedios_alumnos(matriz_magna:list)->list:
 
 
 
-matriz_notas= [    [6,7,6,5,2],
+matriz_notas= [    [6,7,6,5,2], #0
                     [8,7,7,5,10],
                     [2,1,9,3,6],
                     [8,8,9,9,9],
@@ -500,8 +505,8 @@ matriz_notas= [    [6,7,6,5,2],
                     [2,1,7,10,3],
                     [1,7,10,2,10],
                     [6,3,7,9,8],
-                    [8,8,10,7,6],  #10
-                    [1,7,5,9,5],
+                    [8,8,10,7,6],  
+                    [1,7,5,9,5], #10
                     [9,4,3,4,7],
                     [3,4,6,3,1],
                     [7,5,5,3,1],
@@ -510,8 +515,8 @@ matriz_notas= [    [6,7,6,5,2],
                     [5,6,8,2,3],
                     [3,9,10,3,7],
                     [6,5,9,7,9],
-                    [3,2,10,2,5], #20
-                    [3,9,4,3,1],
+                    [3,2,10,2,5],
+                    [3,9,4,3,1],  #20
                     [8,5,4,7,9],
                     [1,6,4,2,10],
                     [10,7,10,3,9],
@@ -520,7 +525,53 @@ matriz_notas= [    [6,7,6,5,2],
                     [10,10,4,3,3],
                     [8,8,1,8,2],
                     [8,4,1,8,9],
-                    [6,5,1,2,2]] #30  
+                    [6,5,1,2,2]] #29  
+
+
+nombres = ["Marcela",
+            "Pepe",
+            "Florencia",
+            "Nestor",
+            "Ricardo",
+            "Ortencio",
+            "Jorge",
+            "Karina",
+            "Alejandra",
+            "Horacio",
+            "Paula",
+            "Nicole",
+            "Graciela",
+            "Mario",
+            "Gisela",
+            "Melina",
+            "Julieta",
+            "Omar",
+            "Laura",
+            "Iara",
+            "Maria",
+            "Marcia",
+            "Belen",
+            "Joel",
+            "Tito",
+            "Raul",
+            "Hernan",
+            "David",
+            "Ariel",
+            "Martina"]  
+
+edades = [12, 16, 15, 15, 13, 17, 13, 17, 17, 17, 17, 12, 16, 14, 14, 16, 16, 15, 14, 13, 17, 15, 12, 12, 12, 18, 15, 14, 17, 15]
+
+legajos = [45500, 13000, 45750, 34500, 37750, 37250, 37500,
+           14000, 11750, 26500, 43250, 21000, 46250, 10250,
+           14010, 26000, 28500, 25500,44500,40250, 15750,
+           42500 ,33250 ,39750 ,36500 ,29750 ,40000 ,39250,
+            18750, 40500]
+
+generos = ["F","M","F","M","M","X","M","F","F","M","F","F","F","M","F"
+           ,"F","F","X","F","F","X","F","F","M","M","M","M","M","M","F"
+           ,]
+
+
 
 #PROMEDIOS POR COLUMNA 
 def mostrar_promedio_por_columnas_general(matriz_notas:list)->list:
@@ -538,18 +589,196 @@ def mostrar_promedio_por_columnas_general(matriz_notas:list)->list:
 
 
 lista_promedios = mostrar_promedio_por_columnas_general(matriz_notas)
-print(lista_promedios)
+
 
 # averigua el numero mayor en listas
 def el_mayor_en_listas(lista:list)-> list:
     numero_mayor = [0] 
     for i in range(0, len(lista)-1, 1):  
         for j in range(i + 1, len(lista), 1):
-            if lista[i] > lista[j]:
-                numero_mayor =+ lista[i]
+            if lista[i] > lista[j]:   #swap
+                numero_mayor =+ lista[i]  #
 
     return numero_mayor
 
 llamar = el_mayor_en_listas(lista_promedios)
-print(f"promedio mayor = {llamar}")
+
+
+#####################
+
+#encontrar indice 
+'''
+guardar_indice = []
+
+for i in range(len(matriz_notas)):
+    guardar_indice = [i]
+
+    '''
+
+
+def buscar_alumno_por_legajo():
+
+    while True:  #este bucle repite la pregunta  de opciones2
+        opciones2 = int(input("ingrese el legajo del estudiante, ingrese '000' para salir  "))
+        
+        match opciones2:    # con esto voy según el legajo a cada una de las 30 opciones
+            case 45500: #marcela (0)
+                prom = promedios_alumnos(matriz_notas) #llamo a la funcion promedio para incluirlo en la impresion
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[0]}, {generos[0]}, \t{matriz_notas[0]}\t {prom[0]}")
+            
+            case 13000:  #"Pepe" (1)
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[1]}, {generos[1]}, \t{matriz_notas[1]}\t {prom[1]}")
+            
+            case 45750:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[2]}, {generos[2]}, \t{matriz_notas[2]}\t {prom[2]}")
+            
+            case 34500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[3]}, {generos[3]}, \t{matriz_notas[3]}\t {prom[3]}")
+            
+            case 37750:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[4]}, {generos[4]}, \t{matriz_notas[4]}\t {prom[4]}")
+            
+            case 37250:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[5]}, {generos[5]}, \t{matriz_notas[5]}\t {prom[5]}")
+            
+            case 37500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[6]}, {generos[6]}, \t{matriz_notas[6]}\t {prom[6]}")
+            
+            case 14000:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[7]}, {generos[7]}, \t{matriz_notas[7]}\t {prom[7]}")
+            
+            case 11750:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[8]}, {generos[8]}, \t{matriz_notas[8]}\t {prom[8]}")
+            
+            case 26500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[9]}, {generos[9]}, \t{matriz_notas[9]}\t {prom[9]}")
+            
+            case 43250:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[10]}, {generos[10]}, \t{matriz_notas[10]}\t {prom[10]}")
+            
+            case 21000:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[11]}, {generos[11]}, \t{matriz_notas[11]}\t {prom[11]}")
+
+            case 46250:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[12]}, {generos[12]}, \t{matriz_notas[12]}\t {prom[12]}")
+
+            case 10250:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[13]}, {generos[13]}, \t{matriz_notas[13]}\t {prom[13]}")
+            
+            case 14010:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[14]}, {generos[14]}, \t{matriz_notas[14]}\t {prom[14]}")
+            
+            case 26000:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[15]}, {generos[15]}, \t{matriz_notas[15]}\t {prom[15]}")
+            
+            case 28500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[16]}, {generos[16]}, \t{matriz_notas[16]}\t {prom[16]}")
+            
+            case 25500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[17]}, {generos[17]}, \t{matriz_notas[17]}\t {prom[17]}")
+
+            case 44500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[18]}, {generos[18]}, \t{matriz_notas[18]}\t {prom[18]}")
+            
+            case 40250:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[19]}, {generos[19]}, \t{matriz_notas[19]}\t {prom[19]}")
+
+            case 15750:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[20]}, {generos[20]}, \t{matriz_notas[20]}\t {prom[20]}")
+            
+            case 42500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[21]}, {generos[21]}, \t{matriz_notas[21]}\t {prom[21]}")
+            
+            case 33250:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[22]}, {generos[22]}, \t{matriz_notas[22]}\t {prom[22]}")
+            
+            case 39750:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[23]}, {generos[23]}, \t{matriz_notas[23]}\t {prom[23]}")
+            
+            case 36500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[24]}, {generos[24]}, \t{matriz_notas[24]}\t {prom[24]}")
+            
+            case 29750:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[25]}, {generos[25]}, \t{matriz_notas[25]}\t {prom[25]}")
+            
+            case 40000:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t\t promedio")
+                print(f"{nombres[26]}, {generos[26]}, \t{matriz_notas[26]}\t {prom[26]}")
+            
+            case 39250:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[27]}, {generos[27]}, \t{matriz_notas[27]}{prom[27]}")
+            
+            case 18750:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[28]},  {generos[28]}, \t{matriz_notas[28]}\t {prom[28]}")
+            
+            case 40500:
+                prom = promedios_alumnos(matriz_notas)
+                print("Nombre\tGenero\tCalificaciones\t promedio")
+                print(f"{nombres[29]}, {generos[29]}, \t{matriz_notas[29]}\t {prom[29]}")
+            
+            case 000:
+                False
+                print("--Saliendo de la opcion 6--")
+                break
+                
+
+            case _:
+                print("legajo incorrecto o no válido, ingrese un numero de 5 cifras")
+
 
