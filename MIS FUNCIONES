@@ -69,10 +69,20 @@ def mostrar_datos(lista_a:list, lista_b:list, lista_c:list, lista_d:list):
             print(f"{lista_a[i]}\t{lista_b[i]}\t{lista_c[i]}\t{lista_d[i]}")    
 
 
-#COPIAR LISTA
-def copiar_lista(lista_a:list, lista_b:list)->list:
-    nombres_originales = [-1] * len(lista_a)
-    edades_originales = [-1] * len(lista_b)
+#copiar lista 1 parametro
+def copiar_lista(lista_a:list)->list:
+    lista_auxiliar = [0] * len(lista_a) #creo una lista vacia 
+    for i in range(len(lista_a)):
+        lista_auxiliar[i] = lista_a[i]  #le meto los valores originales en la lista nueva 
+        
+    
+    return lista_auxiliar
+
+
+#COPIAR LISTA 2 parametros (este se hizo en clase, le corregí el [-1], por un [0])
+def copiar_lista_dos(lista_a:list, lista_b:list)->list:
+    nombres_originales = [0] * len(lista_a)
+    edades_originales = [0] * len(lista_b)
 
     for i in range(len(lista_a)):
         nombres_originales[i] = lista_a[i]
@@ -485,10 +495,10 @@ def menu() -> int:
         opcion_elegida = input("|--------------------------| Seleccione una opción: |--------------------------| \n"
             "1. Opción 1\n"
             "2. Mostrar todos los datos\n"
-            "3. mostrar el promedio de todos los alumnos\n"
-            "4. Opción 4\n"
+            "3. Mostrar el promedio de todos los alumnos\n"
+            "4. Mostrar datos por promedio ASCENDENTE-DESCENDENTE\n"
             "5. Opción 5\n"
-            "6. Opción 6\n"
+            "6. Buscar un alumno por legajo\n"
             "7. Opción 7\n"
             "8. Salir\n"
             )
@@ -518,7 +528,7 @@ def menu() -> int:
             case "7":
                 print("opción 7")
             case "8":
-                print("--Saliendo de la opcion 6--")
+                print("--Saliendo del programa--")
                 break
             case _:
                 print("Opcion no valida, ingrese un numero dentro de los especificados.")
@@ -867,12 +877,64 @@ def imprimir_promedio_y_nombre(promedio:list,nombre:list):
             print("NOMBRE\t\tPROMEDIO")
             print(f"{nombre[i]}\t\t{promedio[i]}")
         
+
+
+#ordenar 1 solo
+
+
+prom = promedios_alumnos(matriz_notas)
+
+#ORDENAR SINGULAR ASCENDENTE 
+def ordenar_singular_ascendente(lista:list)->list:
+    
+    for i in range(0,len(lista)-1):
+        for j in range(i+1,len(lista)):   
+            if lista[i] > lista[j]:
+                lista_auxiliar = lista[i]
+                lista[i] = lista[j]
+                lista[j] = lista_auxiliar
+            
+
+    return lista
+    
+
+# ORDENAR SINGULAR DESCENDENTE 
+def ordenar_singular_descendente(lista:list)->list:
+    
+    for i in range(0,len(lista)-1,1):
+        for j in range(i+1,len(lista),1):
+            if lista[i] < lista[j]:
+                lista_auxiliar = lista[i]
+                lista[i] = lista[j]
+                lista[j] = lista_auxiliar
+            
+
+    return lista
+
+
+
+
+
+#pruebas
+copia_de_lista = copiar_lista(prom)
+
+
+llamar1 = ordenar_singular_ascendente(copia_de_lista)
+
+llamar2 = ordenar_singular_descendente(prom)
            
+#print(llamar1,llamar2)
+
+
+
+
+
+
 
 
 #PENDIENTE
 
-#armar un ordenador de una sola matriz (la de los promedios)
+#armar un ordenador de una sola matriz (la de los promedios) listo V
 #vincular esos promedios a su respectivo indice de nombres,legajos,genero etc
 #imprimirlos bonito con otra puta funcion
 
