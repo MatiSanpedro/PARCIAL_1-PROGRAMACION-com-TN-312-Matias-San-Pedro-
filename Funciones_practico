@@ -1,0 +1,109 @@
+#FUNCIONES DEL TRABAJO DE CLASE 
+import random 
+
+
+def iniciar_matriz(cantidad_filas,cantidad_columnas,valor_inicial)->list:
+    matriz = []
+    for i in range(cantidad_filas):
+        fila = [valor_inicial] * cantidad_columnas
+
+        matriz += [fila]
+
+    return matriz 
+
+
+
+matrix = iniciar_matriz(2,4,1)
+
+        
+
+#carga secuencial de matriz 
+
+def cargar_matriz_secuencialmente(matriz:list):
+    #agregar las validaciones que sean necesarias
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            matriz[i][j] = int(input(f"fila{i} Columna {j}: "))
+
+    
+    return matriz 
+
+
+
+#carga secuencial (nombres)
+def cargar_matriz_secuencialmente(matriz:list):
+    #agregar las validaciones que sean necesarias
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            matriz[i][j] = (input(f"fila{i} Columna {j}: "))
+
+        
+    return matriz 
+
+
+
+
+#funcion util 3 
+def cargar_aleatoriamente(matriz:list):
+    seguir = "S"
+    while seguir == "S":
+        fila = int(input("indice de fila:  "))
+        columna = int(input("indice de columna: "))
+        dato = int(input("ingrese el numero a cargar"))
+        matriz[fila][columna] = dato
+        seguir = input("desea seguir cargando?  S/N   ")
+
+    return matriz 
+
+
+
+
+
+
+#busqueda en matrices
+
+matrona = [[2,4,5,8],
+           [6,3,1,9]]
+
+#funcion util 4 
+def buscar_valor_entero(matriz:list,valor:int):
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == valor:
+                print(f"Se encontro el numero en fila {i} columna {j}! ")
+
+    
+
+def buscar_valor_flotante(matriz:list,valor:float):
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == valor:
+                print(f"Se encontro el numero en fila {i} columna {j}! ")
+
+
+
+#asda = buscar_valor_entero(matrona,2)
+
+#promedio 
+def funcion_promedio(listo:list):
+    suma = 0
+    for i in listo:
+        suma += i
+        promedio = suma / len(listo)
+
+    return promedio
+
+
+def notas_creadas(notas:list):
+    
+    for i in range(3):
+        lista_notas = random.randint(1,10)
+        notas[i] = lista_notas
+
+    return notas 
+
+def crear_lista(cantidad:int):
+    lista = [0] * cantidad
+
+    return lista 
+
