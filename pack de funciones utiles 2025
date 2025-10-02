@@ -586,3 +586,28 @@ coso = input("ingresar cosas ")
 dsa = verificar_flotante(coso)
 print(dsa)
 '''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+legajos = [ "36334","23303","19948","51506","37502","46221","45278","21671","30857",
+            "17472","10607","46806","37082","16118","41920","16077","10307","29361",
+            "10881","21688","42716","48423","34783","12972","46534","36969","15764","51323","49678","32078"]
+
+nombres = ["ana","carlos","maria","marta","sergio","andres","martin","paula","melina","florencia","marcos",
+"ana","carla","sol","nahuel","pablo","mateo","jesus","victoria","isabel",
+"oscar","miguel","nicolas","agustin","hernan",]
+
