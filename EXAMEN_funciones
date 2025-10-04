@@ -1,0 +1,396 @@
+#FUNCIONES 
+
+import random 
+
+
+def iniciar_matriz(cantidad_filas,cantidad_columnas,valor_inicial)->list:
+    matriz = []
+    for i in range(cantidad_filas):
+        fila = [valor_inicial] * cantidad_columnas
+
+        matriz += [fila]
+
+    return matriz 
+
+
+
+
+
+        
+
+#carga secuencial de matriz 
+
+#CARGA SECUENCIAL TEXTO original 
+def cargar_matriz_secuencialmente_texto(matriz:list):
+    #agregar las validaciones que sean necesarias
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            matriz[i][j] = (input(f"fila{i} Columna {j}: "))
+
+        
+    return matriz 
+
+def cargar_matriz_secuencialmente_notas(matriz:list,lista_2):
+   
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            matriz[i][j] = int(input(f"ingresar nota para {lista_2[i]} lugar {j}: "))
+
+    
+    return matriz 
+
+
+'''am2 = ["juan","marcos","pedro","pepe","lola"]
+amt = [[0],[0],[0],[0],[0]]
+amt = cargar_matriz_secuencialmente_notas(amt,am2)
+print(amt)'''
+
+#cod_ascii = ord(str(i))
+#cod_ascii = ord(i)
+
+#verificar numero string 
+def verificar_numero_string(cadena):
+    bandera = False
+    for i in cadena:
+        cod_ascii = ord(i)
+
+        if (cod_ascii >= 48 and cod_ascii <=57):
+            bandera = True
+            print("son numeros")
+        
+        elif cod_ascii == 45:
+            bandera = True
+            print("numero negativo ")
+            
+        else:
+            bandera = False
+            print("no valido ")
+            
+    return bandera 
+
+
+#revisar esto, arroja true cuando aun hay una letra
+def verificar_numero_lista(cadena:list):
+    bandera = False
+    for i in range(len(cadena)):
+        for j in range(len(cadena[i])):
+            cod_ascii = ord(str(i))
+
+            if (cod_ascii >= 48 and cod_ascii <=57):
+                bandera = True
+                print("son numeros")
+            
+            elif cod_ascii == 45:
+                bandera = True
+                print("numero negativo ingresado")
+                
+            else:
+                bandera = False
+                print("no valido ")
+
+
+    return bandera 
+
+
+
+
+#numeros
+def cargar_matriz_secuencialmente_numeros(matriz:list):
+    
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            matriz[i][j] = int(input(f"fila{i} Columna {j}: "))
+
+    return matriz 
+
+
+
+def verificar_cadena_alfabetica(cadena):
+    bandera1 = False
+    for i in cadena:
+            cod_ascii = ord(i)
+            if (cod_ascii >= 65 and cod_ascii <= 90) or (cod_ascii >= 97 and cod_ascii <= 122):
+                bandera1 = True        
+            
+            else:
+                bandera1 = False
+                
+        
+
+            return bandera1
+
+
+#carga secuencial (nombres) |  IMPORTANTE NO MEZCLAR CON NUMEROS,  ESTO MANEJA STRINGS
+  
+def cargar_matriz_secuencialmente_nombres(matriz: list):
+    
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            while True:    #necesito este bucle para volver a pedir input y salir tranquilamente 
+                nombre_a_cargar = input("Nombre: ")
+                bandera = verificar_cadena_alfabetica(nombre_a_cargar)  
+                # la funcion devuelve True si el ingreso son letras, false si es otra cosa 
+
+                if bandera == True :   #si es verdadero 
+                    matriz[i][j] = nombre_a_cargar   #carga el nombre en la lista
+                    print("validado correctamente") 
+                    break     # salgo del while 
+                else:                           # si es Falso, imprime esto, no toca la lista 
+                    print("caracter incorrecto, intente de nuevo")
+    
+    return matriz
+
+
+
+
+
+#cargar notas en lista  + validacion de numero entre 1 y 10  
+def cargo_notas_en(lista,nombres):
+    lista_suplente = [0] * len(lista)
+    for i in range(len(lista)):
+        while True:
+            notas = input(f"ingrese 5 notas, una a la vez, lugar {nombres[i]} ")    
+            
+            if len(notas) == 2 and ord(notas[0])== ord("1") and ord(notas[1])== ord("0"): #si son dos cifras y a la vez son 1 y 0
+                lista_suplente[i] = int(notas)     #añadir a la lista 
+                break  #rompo aca para que no recorra todo el resto del codigo 
+
+            elif len(notas)== 2:  #si son dos cifras 
+                print("caracter/es no validos")
+                continue  #lo excluyo 
+        
+            if len(notas)== 1 :     #si la cifra es 1, 
+                if ord(notas) >57 or ord(notas)<48: #valido que sea numero 
+                    print("caracter invalido, ingrese un numero")
+                    continue
+                else:               #lo que logre pasar por todo lo anterior es añadido 
+                    lista_suplente[i] = int(notas) 
+                    break
+            if len(notas) >2:  # si el largo es mayor a dos, lo descarto  
+                print("invalido, la nota debe ser de 2 cifras como maximo")
+                continue
+            break
+                    #banderita = True
+    lista = lista_suplente
+                    
+    
+        
+
+    return lista 
+
+
+
+
+#funcion util 3 
+#carga aleatoria
+def cargar_aleatoriamente(matriz:list):
+    seguir = "S"
+    while seguir == "S":
+        fila = int(input("indice de fila:  "))
+        columna = int(input("indice de columna: "))
+        dato = int(input("ingrese el numero a cargar"))
+        matriz[fila][columna] = dato
+        seguir = input("desea seguir cargando?  S/N   ")
+
+    return matriz 
+
+
+
+
+
+
+#busqueda en matrices
+
+
+
+#funcion util 4 
+#buscar valor entero en matriz 
+def buscar_valor_entero(matriz:list,valor:int):
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == valor:
+                print(f"Se encontro el numero en fila {i} columna {j}! ")
+
+    
+#buscar valor flotante en matriz 
+def buscar_valor_flotante(matriz:list,valor:float):
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == valor:
+                print(f"Se encontro el numero en fila {i} columna {j}! ")
+
+
+#trabaja con listas de float
+#busca los numeros mayores o iguales al ingresado 
+def mayor_o_igual_float_listas(lista:list,valor,lista_nombres:list):
+
+    for i in range(len(lista)):
+        if lista[i] > valor:
+            print(f"Promedio : {lista[i]} alumno : {lista_nombres[i]} ")
+
+        if lista[i] == valor:
+            print(f"Promedio :  {valor} alumno : {lista_nombres[i]}")
+
+    
+
+
+
+#esto trabaja con matrices (lista de listas) 
+def buscar_mayor_o_igual_flotante_matrices(lista:list,valor):
+    for i in range(len(lista)):
+        for j in range(len(lista[i])):
+            if lista[i][j] == round(valor):
+                print(f"Se encontro el promedio {valor} en fila {i} columna {j} ")
+
+            if lista[i][j] > valor:
+                print(f"se encontro  {lista[i][j]} en fila {i} columna {j} ")
+            
+
+    
+
+
+
+#buscar mayor con SWAP 
+def ubicar_mayor(lista:list):
+    ingreso = 10
+    
+    for i in range(len(lista)):
+        for j in range(len(lista[i])):
+            if lista[i][j] > ingreso: #si a es mayor a b
+                temp = lista[i][j]   #guardo a (osea el mayor) en temp 
+                lista[i][j] = ingreso      #en a guardo el otro valor menor 
+                ingreso = temp   #y en b guardo el valor de temp ( osea el mayor )
+                print(f"el mayor es {ingreso} ubicado en {i}, {j}")
+    return ingreso 
+
+
+#promedios
+#en lista simple
+def funcion_promedio(listo:list):
+    suma = 0
+    for i in listo:
+        suma += i
+        promedio = suma / len(listo)
+        
+    return promedio
+
+
+
+#en matrices 
+def funcion_promedio_en_listas(listo:list,lista_nombres:list):
+    indice = 0  #voy a usar esto para mover el lugar donde se insertan los promedios 
+    devolucion = [0.0] * len(listo)  #lista de flotantes 
+    for i in listo:   
+        suma = []        
+        suma += i
+        promedio = (suma[0] + suma[1] + suma[2]) / len(suma) 
+        
+        print(f"la lista de notas es :{suma}.  promedio : {promedio}")
+        
+
+        devolucion[indice] += promedio
+        indice +=1 #lo voy moviendo 1 lugar en cada iteracion asi no me sobreescribe siempre el primer lugar en "devolucion"
+
+    return devolucion
+
+
+
+
+
+'''#probar esto antes de usarlo seriamente 
+def con_esto_promedio_listas(listo: list) -> list:
+    n = len(listo)
+    promedios = [0.0] * n            # pre-alocación (no append)
+    for i in range(n):
+        sub = listo[i]               # la sublista actual
+        total = 0
+        # sumar los elementos sin usar sum()
+        for j in range(len(sub)):
+            total = total + sub[j]   # suma acumulada (algorítmica)
+        # calcular promedio (si la sublista no está vacía)
+        if len(sub) != 0:
+            promedios[i] = total / len(sub)
+        else:
+            promedios[i] = 0.0
+    return promedios
+
+'''
+
+
+
+#esta genera notas con random
+def notas_creadas(notas:list):
+    
+    for i in range(3):   #genera 3 
+        lista_notas = random.randint(1,10) #entre 1 y 10
+        notas[i] = lista_notas    #las agrega a una lista y devuelve 
+
+    return notas 
+
+
+#crea una lista simple
+def crear_lista(cantidad:int):
+    lista = [0] * cantidad
+
+    return lista 
+
+
+
+#valida si lo seleccionado es numero, devuelve True/False
+def validar_SOLOUNO_numero_booleano(caracter: str) -> bool:
+    if ord(caracter) >= 48 and ord(caracter) <= 57:
+        return True  
+    else:
+        return False 
+
+
+
+#devuelve el indice de un elemento 
+def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
+    indice_elemento = -1 # Inicializado en el caso de no haberlo encontrado
+    
+    for i in range(len(lista)):
+        if lista[i] == dato_a_buscar:
+            indice_elemento = i # Cambiar a indice del elemento si se ecneutnra
+            break # cortar ejecucion debido a que se encontro
+    
+    return indice_elemento
+
+
+#buscar mayor SWAP  con 3
+def maximo_numeros_3 (numero_1:int,numero_2:int,numero_3:int) -> int:
+    numero_mayor = 0
+    #verifico que quede 1 si los 3 son iguales 
+    if numero_1 == numero_2 and numero_1 == numero_3:
+        numero_mayor = numero_1
+        #ahora los comparo para averiguar cual es mayor
+    elif numero_1 > numero_2 and numero_1 > numero_3:
+        numero_mayor = numero_1
+    elif numero_2 > numero_1 and numero_2 > numero_3:
+        numero_mayor = numero_2 
+    elif numero_3 > numero_1 and numero_3 > numero_2:
+        numero_mayor = numero_3
+        # si hay dos iguales y uno mayor 
+    elif numero_1 == numero_2 and numero_1 > numero_3:
+        numero_mayor = numero_1
+    elif numero_2 == numero_1 and numero_2 > numero_3:
+        numero_mayor = numero_2 
+    elif numero_3 == numero_2 and numero_3 > numero_2:
+        numero_mayor = numero_3
+    elif numero_3 == numero_1 and numero_3 > numero_2:
+        numero_mayor = numero_3
+    elif numero_2 == numero_3 and numero_2 > numero_1:
+        numero_mayor = numero_2
+    return numero_mayor 
+
+
+
+#BUSCAR MAYOR CON CUALQUIER CANTIDAD 
+def maximo_de_numeros(numeros:float):
+    numero_mayor = numeros[0]   
+    
+    for numero in numeros: 
+        if numero > numero_mayor:
+            numero_mayor = numero
+
+    return numero_mayor
