@@ -9,7 +9,7 @@ legajos_hardcode = [ "36334","23303","19948","51506","37502","46221","45278","21
 
 
 nombres_hardcode = ["ana","carlos","maria","marta","sergio","andres","martin","paula","melina","florencia","marcos",
-                    "ana","carla","sol","nahuel","pablo","mateo","jesus","victoria","isabel",
+                    "lana","carla","sol","nahuel","pablo","mateo","jesus","victoria","isabel",
                     "oscar","miguel","nicolas","agustin","hernan",]
 
 
@@ -288,10 +288,33 @@ def cargar_legajos_en(lista: list, nombres):
     return lista
     
     
+
+#orden de lista ascendente 
+def ordenar_lista_ascendente(lista:list):
+    for i in range(len(lista)):
+        for j in range(len(lista)):
+            if lista[i] < lista[j]:
+                aux = lista[i] 
+                lista[i] = lista[j]
+                lista[j] = aux
+        
+
+    return lista
+
+
+#orden de lista descendente 
+def ordenar_lista_descendente(lista:list):
+    for i in range(len(lista)):
+        for j in range(len(lista)):
+            if lista[i] > lista[j]:
+                aux = lista[i] 
+                lista[i] = lista[j]
+                lista[j] = aux
     
 
+    return lista
 
-
+#i + 1, 
 
 
 
@@ -390,25 +413,22 @@ def funcion_promedio(listo:list):
 
 
 
-#en matrices 
-def funcion_promedio_en_listas(listo:list,lista_nombres:list):
-    indice = 0  #voy a usar esto para mover el lugar donde se insertan los promedios 
-    devolucion = [0.0] * len(listo)  #lista de flotantes 
-    for i in listo:   
-        suma = []        
-        suma += i
-        promedio = (suma[0] + suma[1] + suma[2]) / len(suma) 
-        
-        print(f"la lista de notas es :{suma}.  promedio : {promedio}")
-        
+#promedio en matrices
+def promedio_en_matrices(matriz:list)->list[float]:
+    promedios_guardados = []
+   
 
-        devolucion[indice] += promedio
-        indice +=1 #lo voy moviendo 1 lugar en cada iteracion asi no me sobreescribe siempre el primer lugar en "devolucion"
+    for i in matriz:   #recorro la matriz 
+        suma_de_numeros = 0
 
-    return devolucion
-
-
-
+        for j in i: #recorro numero por numero dentro de las sublistas 
+            suma_de_numeros += j  # aca sumo cada elemento de la sublista [0,1,2,3,4] = [10] por ejemplo
+             
+        promedio = suma_de_numeros /len(i) #la suma de numeros dividida el largo de la sublista  [10] / 5 
+        promedios_guardados += [promedio] #lo sumo a la lista final
+            
+   
+    return promedios_guardados
 
 
 '''#probar esto antes de usarlo seriamente 
@@ -508,3 +528,83 @@ def maximo_de_numeros(numeros:float):
             numero_mayor = numero
 
     return numero_mayor
+
+
+#funcion del punto 2 
+def imprimir_todo(nombres, notas, generos, legajos):
+    print(f"{'NOMBRE':<10} | {'NOTAS':<20} | {'GENERO':<6} | {'LEGAJO':<6}")
+    print("-" * 55)  # línea 
+
+    for i in range(len(nombres)):
+        print(f"{nombres[i]:<10} | {str(notas[i]):<20} | {generos[i]:<6} | {legajos[i]:<6}")
+
+
+#Funcion del punto 2 
+def mostrar_uno(nombres,notas,generos,legajos):
+    ingreso = input("ingrese el nombre del estudiante que desea ver: ")
+    
+    if verificar_cadena_alfabetica(ingreso) == True:
+        for i in range(len(nombres)):
+            
+            if nombres[i] == ingreso:
+                print(f"{'NOMBRE' :<10}| {'NOTAS':<20}| {'GENERO':<6}| {'LEGAJO':<6}")
+                print(f"{nombres[i]:<10}| {str(notas[i]):<20}| {generos[i]:<6}| {legajos[i]:<6}")
+    else:
+        ingreso = input("ingrese el nombre del estudiante que desea ver: ")
+
+
+
+
+#ESTA FUNCION ENTERA ES EL PUNTO 2 
+def mostrar_uno_y_todos(nombres,notas,generos,legajos):
+    while True:
+        eleccion = input("Seleccione una opcion: \n 1- Mostrar todo \n 2- Mostrar un alumno \n 3-Volver")
+        match eleccion:
+            case "1":
+                imprimir_todo(nombres,notas,generos,legajos)
+                
+            case "2":
+                mostrar_uno(nombres,notas,generos,legajos)
+            case "3":
+                False
+                break
+
+
+
+
+
+#ESTA FUNCION ENTERA ES EL PUNTO 4  
+#recibe las listas para mostrar promedio mayor o menor segun se le indique por input 
+def mostrar_ascendente_o_descendente(promedios,nombres,notas,generos,legajos):
+    while True:
+        eleccion = input("Seleccione una opcion: \n 1- Mostrar datos por promedio mayor a menor  \n 2- Mostrar datos por promedio de menor a mayor \n 3-Volver")
+        
+        match eleccion:
+            case "1":
+                promedio_ascendente = ordenar_lista_ascendente(promedios)
+                imprimir_con_promedio(promedio_ascendente,nombres,notas,generos,legajos)
+
+            case "2":
+                promedio_descendente = ordenar_lista_descendente(promedios)
+                imprimir_con_promedio(promedio_descendente,nombres,notas,generos,legajos)
+
+            case "3":
+                False
+                break
+
+
+
+#funcion del punto 4 
+#imprime recibiendo como primer parametro el promedio ordenado de menor a mayor 
+def imprimir_con_promedio(promedio,nombres,notas,generos,legajos):
+    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
+    for i in range(len(nombres)):
+        
+        print(f"{promedio[i]:<10} |{nombres[i]:<10} |{str(notas[i]):<18} |{generos[i]:<6} |{legajos[i]:<10}")
+
+
+
+
+
+
+
