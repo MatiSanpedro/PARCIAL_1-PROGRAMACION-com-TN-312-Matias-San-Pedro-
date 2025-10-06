@@ -56,7 +56,7 @@ notas_hardcode = [  [6,7,6,5,2], #0
 def menu():
     while True:
         opciones = input("x----Bienvenido----x \nQue desea hacer? \n 1-Cargar datos: |Nombres|Notas|Legajos|Generos \n 2- Mostrar todos \n 3-Mostrar promedios \n 4- Mostrar promedios por orden \n 5- Mostrar las materias con mayor promedio \n 6- Buscar alumno por legajo \n 7- Mostrar calificaciones repetidas \n 8-Salir del programa ")
-
+        #matrices
         nombres = iniciar_matriz(30,1,0)
         legajos = iniciar_matriz(30,1,0)
         generos = iniciar_matriz(30,1,0)
@@ -85,7 +85,7 @@ def menu():
                 mostrar_ascendente_o_descendente(promedios_guardados,nombres,notas,generos,legajos)
 
             case "5":
-                pass
+                sumar_y_ordenar_promedios_de_columnas(notas)
             case "6":
                 mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos)
             case "7":
@@ -112,6 +112,7 @@ menu()
 def menu_hardcodeado():
     while True:
         opciones = input("x----Bienvenido----x \nQue desea hacer? \n 1-Cargar datos: |Nombres|Notas|Legajos|Generos \n 2- Mostrar todos \n 3-Mostrar promedios \n 4- Mostrar promedios por orden \n 5- Mostrar las materias con mayor promedio \n 6- Buscar alumno por legajo \n 7- Mostrar calificaciones repetidas \n 8-Salir del programa \n")
+        #matrices 
 
         nombres = nombres_hardcode
         legajos = legajos_hardcode
@@ -133,7 +134,8 @@ def menu_hardcodeado():
                 mostrar_ascendente_o_descendente(promedios_guardados,nombres,notas,generos,legajos)
 
             case "5":
-                pass
+                sumar_y_ordenar_promedios_de_columnas(notas_hardcode)
+
             case "6":
                 mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos)
             case "7":
