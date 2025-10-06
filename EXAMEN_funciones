@@ -108,15 +108,15 @@ def verificar_numero_string(cadena):
 
         if (cod_ascii >= 48 and cod_ascii <=57):
             bandera = True
-            print("son numeros")
+            
         
         elif cod_ascii == 45:
             bandera = True
-            print("numero negativo ")
+            
             
         else:
             bandera = False
-            print("no valido ")
+            
             
     return bandera 
 
@@ -368,7 +368,6 @@ def mayor_o_igual_float_listas(lista:list,valor,lista_nombres:list):
         if lista[i] == valor:
             print(f"Promedio :  {valor} alumno : {lista_nombres[i]}")
 
-    
 
 
 
@@ -383,13 +382,15 @@ def buscar_mayor_o_igual_flotante_matrices(lista:list,valor):
                 print(f"se encontro  {lista[i][j]} en fila {i} columna {j} ")
             
 
+
+
     
 
 
 
 #buscar mayor con SWAP 
 def ubicar_mayor(lista:list):
-    ingreso = 10
+    ingreso = 1
     
     for i in range(len(lista)):
         for j in range(len(lista[i])):
@@ -399,6 +400,9 @@ def ubicar_mayor(lista:list):
                 ingreso = temp   #y en b guardo el valor de temp ( osea el mayor )
                 print(f"el mayor es {ingreso} ubicado en {i}, {j}")
     return ingreso 
+
+
+
 
 
 #promedios
@@ -491,44 +495,6 @@ def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
     return indice_elemento
 
 
-#buscar mayor SWAP  con 3
-def maximo_numeros_3 (numero_1:int,numero_2:int,numero_3:int) -> int:
-    numero_mayor = 0
-    #verifico que quede 1 si los 3 son iguales 
-    if numero_1 == numero_2 and numero_1 == numero_3:
-        numero_mayor = numero_1
-        #ahora los comparo para averiguar cual es mayor
-    elif numero_1 > numero_2 and numero_1 > numero_3:
-        numero_mayor = numero_1
-    elif numero_2 > numero_1 and numero_2 > numero_3:
-        numero_mayor = numero_2 
-    elif numero_3 > numero_1 and numero_3 > numero_2:
-        numero_mayor = numero_3
-        # si hay dos iguales y uno mayor 
-    elif numero_1 == numero_2 and numero_1 > numero_3:
-        numero_mayor = numero_1
-    elif numero_2 == numero_1 and numero_2 > numero_3:
-        numero_mayor = numero_2 
-    elif numero_3 == numero_2 and numero_3 > numero_2:
-        numero_mayor = numero_3
-    elif numero_3 == numero_1 and numero_3 > numero_2:
-        numero_mayor = numero_3
-    elif numero_2 == numero_3 and numero_2 > numero_1:
-        numero_mayor = numero_2
-    return numero_mayor 
-
-
-
-#BUSCAR MAYOR CON CUALQUIER CANTIDAD 
-def maximo_de_numeros(numeros:float):
-    numero_mayor = numeros[0]   
-    
-    for numero in numeros: 
-        if numero > numero_mayor:
-            numero_mayor = numero
-
-    return numero_mayor
-
 
 #funcion del punto 2 
 def imprimir_todo(nombres, notas, generos, legajos):
@@ -604,7 +570,63 @@ def imprimir_con_promedio(promedio,nombres,notas,generos,legajos):
 
 
 
+#funciones punto 5 
 
 
 
+#FUNCIONES PUNTO 6 
+
+
+def mostrar_uno_por_legajo(promedios,nombres,notas,generos,legajos):
+    ingreso = input("ingrese el legajo del estudiante que desea ver: ")
+    
+    if verificar_numero_string(ingreso) == True:
+        for i in range(len(legajos)):
+            
+            if legajos[i] == ingreso:
+                print(f"{'NOMBRE' :<10}| {'NOTAS':<20}|{'promedio':<10} |{'GENERO':<6}| {'LEGAJO':<6}")
+                print(f"{nombres[i]:<10}| {str(notas[i]):<20}|{promedios[i]:<10} |{generos[i]:<6}| {legajos[i]:<6}")
+    else:
+        ingreso = input("ingrese el legajo del estudiante que desea ver: ")
+
+
+def imprimir_con_promedio_legajo(promedio,nombres,notas,generos,legajos):
+    print(f"|{'LEGAJO':<10} |{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} ")
+    for i in range(len(nombres)):
+        
+        print(f"{legajos[i]:<10} |{promedio[i]:<10} |{nombres[i]:<10} |{str(notas[i]):<18} |{generos[i]:<6} |")
+
+
+def mostrar_todo_por_legajo(promedios,nombres,notas,generos,legajos):
+    while True:
+        ingreso = input("Que desea hacer ? \n -1 Buscar un estudiante ingresando su legajo \n 2- mostrar todos")
+        
+        match ingreso:
+            case "1":
+                mostrar_uno_por_legajo(promedios,nombres,notas,generos,legajos)
+            case "2":
+                imprimir_con_promedio_legajo(promedios,nombres,notas,generos,legajos)
+            case "3":
+
+                break
+
+
+
+    
+
+
+def mayor_float(lista:list[float]):
+    for i in range(len(lista)):
+        for j in range(len(lista)):
+            if lista[i] > lista[j]:
+                aux = lista[i]
+                lista[i] = lista[j]
+                lista[j] = aux 
+            
+    return lista
+
+
+#proma = promedio_en_matrices(notas_hardcode)
+#finito = mayor_float(proma)
+#print(finito)
 
