@@ -489,7 +489,7 @@ def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
     
     for i in range(len(lista)):
         if lista[i] == dato_a_buscar:
-            indice_elemento = i # Cambiar a indice del elemento si se ecneutnra
+            indice_elemento = i # Cambiar a indice del elemento si se encuentra
             break # cortar ejecucion debido a que se encontro
     
     return indice_elemento
@@ -539,7 +539,8 @@ def mostrar_uno_y_todos(nombres,notas,generos,legajos):
 
 
 
-#ESTA FUNCION ENTERA ES EL PUNTO 4  
+#funciones del punto 4 
+ 
 #recibe las listas para mostrar promedio mayor o menor segun se le indique por input 
 def mostrar_ascendente_o_descendente(promedios,nombres,notas,generos,legajos):
     while True:
@@ -571,6 +572,36 @@ def imprimir_con_promedio(promedio,nombres,notas,generos,legajos):
 
 
 #funciones punto 5 
+
+
+
+    
+#ubica y devuelve el mayor de cada sublista (trabaja matrices)
+def mayores_en_sublistas(matriz: list):
+    mayores = [0] * len(matriz)  
+    
+    for i in range(len(matriz)):        
+        mayor = matriz[i][0]  # supongo que el primero es el mayor
+        for j in range(1, len(matriz[i])):  # recorro el resto de los elementos
+            if matriz[i][j] > mayor:
+                mayor = matriz[i][j]
+                
+        mayores[i] = mayor # guardo el mayor 
+
+
+    return mayores
+
+
+
+
+'''maiores = mayores_en_sublistas(notas_hardcode)
+print(maiores)
+'''
+
+
+
+
+    
 
 
 
