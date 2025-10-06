@@ -288,9 +288,22 @@ def cargar_legajos_en(lista: list, nombres):
     return lista
     
     
-
-#orden de lista ascendente 
+#orden de lista simple ascendente 
 def ordenar_lista_ascendente(lista:list):
+    for i in range(len(lista)):
+        for j in range(len(lista)):
+            if lista[i] > lista[j]:
+                aux = lista[i] 
+                lista[i] = lista[j]
+                lista[j] = aux
+        
+
+    return lista
+
+
+
+#orden de lista simple descendente 
+def ordenar_lista_descendente(lista:list):
     for i in range(len(lista)):
         for j in range(len(lista)):
             if lista[i] < lista[j]:
@@ -302,17 +315,76 @@ def ordenar_lista_ascendente(lista:list):
     return lista
 
 
-#orden de lista descendente 
-def ordenar_lista_descendente(lista:list):
-    for i in range(len(lista)):
-        for j in range(len(lista)):
-            if lista[i] > lista[j]:
-                aux = lista[i] 
-                lista[i] = lista[j]
-                lista[j] = aux
-    
+# ESTAS SOLAMENTE IMPRIMEN  
+# misma logica que las funciones de arriba, pero con mas variables: 
 
-    return lista
+
+#orden de lista ascendente 
+def ordenar_lista_por_promedio_ascendente(promedios,nombres,notas,generos,legajos):
+    for i in range(len(promedios)):
+        for j in range(len(promedios)):
+            
+            if promedios[i] > promedios[j]:
+                aux_promedios = promedios[i] 
+                promedios[i] = promedios[j]
+                promedios[j] = aux_promedios
+
+                aux_nombres = nombres[i]
+                nombres[i] = nombres[j]
+                nombres[j] = aux_nombres
+
+                aux_notas = notas[i]
+                notas[i] = notas[j]
+                notas[j] = aux_notas
+
+                aux_generos = generos[i]
+                generos[i] = generos[j]
+                generos[j] = aux_generos
+
+                aux_leg = legajos[i]
+                legajos[i] = legajos[j]
+                legajos[j] = aux_leg
+
+    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
+    for q in range(len(promedios)):    
+        print(f"{promedios[q]:<10} |{nombres[q]:<10} |{str(notas[q]):<18} |{generos[q]:<6} |{legajos[q]:<10}")
+
+
+
+#ordenar lista con promedio descendente 
+def ordenar_lista_por_promedio_descendente(promedios,nombres,notas,generos,legajos):
+    for i in range(len(promedios)):
+        for j in range(len(promedios)):
+            
+            if promedios[i] < promedios[j]:
+                aux_promedios = promedios[i] 
+                promedios[i] = promedios[j]
+                promedios[j] = aux_promedios
+
+                aux_nombres = nombres[i]
+                nombres[i] = nombres[j]
+                nombres[j] = aux_nombres
+
+                aux_notas = notas[i]
+                notas[i] = notas[j]
+                notas[j] = aux_notas
+
+                aux_generos = generos[i]
+                generos[i] = generos[j]
+                generos[j] = aux_generos
+
+                aux_leg = legajos[i]
+                legajos[i] = legajos[j]
+                legajos[j] = aux_leg
+    
+    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
+    for q in range(len(promedios)):    
+        print(f"{promedios[q]:<10} |{nombres[q]:<10} |{str(notas[q]):<18} |{generos[q]:<6} |{legajos[q]:<10}")
+
+
+
+
+
 
 #i + 1, 
 
@@ -544,16 +616,14 @@ def mostrar_uno_y_todos(nombres,notas,generos,legajos):
 #recibe las listas para mostrar promedio mayor o menor segun se le indique por input 
 def mostrar_ascendente_o_descendente(promedios,nombres,notas,generos,legajos):
     while True:
-        eleccion = input("Seleccione una opcion: \n 1- Mostrar datos por promedio mayor a menor  \n 2- Mostrar datos por promedio de menor a mayor \n 3-Volver")
+        eleccion = input("Seleccione una opcion: \n 1- Mostrar datos por promedio mayor a menor  \n 2- Mostrar datos por promedio de menor a mayor \n 3-Volver  ")
         
         match eleccion:
             case "1":
-                promedio_ascendente = ordenar_lista_ascendente(promedios)
-                imprimir_con_promedio(promedio_ascendente,nombres,notas,generos,legajos)
+                ordenar_lista_por_promedio_ascendente(promedios,nombres,notas,generos,legajos)
 
             case "2":
-                promedio_descendente = ordenar_lista_descendente(promedios)
-                imprimir_con_promedio(promedio_descendente,nombres,notas,generos,legajos)
+                ordenar_lista_por_promedio_descendente(promedios,nombres,notas,generos,legajos)
 
             case "3":
                 False
@@ -565,7 +635,7 @@ def mostrar_ascendente_o_descendente(promedios,nombres,notas,generos,legajos):
 #imprime recibiendo como primer parametro el promedio ordenado de menor a mayor 
 def imprimir_con_promedio(promedio,nombres,notas,generos,legajos):
     print(f"{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
-    for i in range(len(nombres)):
+    for i in range(len(promedio)):
         
         print(f"{promedio[i]:<10} |{nombres[i]:<10} |{str(notas[i]):<18} |{generos[i]:<6} |{legajos[i]:<10}")
 
@@ -660,4 +730,6 @@ def mayor_float(lista:list[float]):
 #proma = promedio_en_matrices(notas_hardcode)
 #finito = mayor_float(proma)
 #print(finito)
+
+
 
