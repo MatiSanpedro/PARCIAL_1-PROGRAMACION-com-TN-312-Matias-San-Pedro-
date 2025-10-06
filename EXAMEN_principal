@@ -9,12 +9,12 @@ legajos_hardcode = [ "36334","23303","19948","51506","37502","46221","45278","21
 
 
 nombres_hardcode = ["ana","carlos","maria","marta","sergio","andres","martin","paula","melina","florencia","marcos",
-                    "ana","carla","sol","nahuel","pablo","mateo","jesus","victoria","isabel",
-                    "oscar","miguel","nicolas","agustin","hernan",]
+                    "lana","carla","sol","nahuel","pablo","mateo","jesus","victoria","isabel",
+                    "oscar","miguel","nicolas","agustin","hernan","pedro","sofia","micaela","natalia","rosa"]
 
 
 generos_hardcore = ["F","M","F","M","M","X","M","F","F","M","F","F","F","M","F"
-           ,"F","F","X","F","F","X","F","F","M","M","M","M","M","M","F"
+           ,"F","F","X","F","F","X","F","F","M","M","M","F","F","F","F"
            ,]
 
 
@@ -71,7 +71,7 @@ def menu():
                 print("las notas fueron correctamente cargadas")
                 legajos = cargar_legajos_en(legajos,nombres)
                 print("legajos cargados correctamente")
-                generos = cargar_matriz_secuencialmente_generos(generos)
+                generos = cargar_matriz_secuencialmente_generos(generos,nombres)
                 print("generos cargados correctamente")
 
 
@@ -106,3 +106,45 @@ def menu():
 
 
 menu()
+
+
+
+def menu_hardcodeado():
+    while True:
+        opciones = input("x----Bienvenido----x \nQue desea hacer? \n 1-Cargar datos: |Nombres|Notas|Legajos|Generos \n 2- Mostrar todos \n 3-Mostrar promedios \n 4- Mostrar promedios por orden \n 5- Mostrar las materias con mayor promedio \n 6- Buscar alumno por legajo \n 7- Mostrar calificaciones repetidas \n 8-Salir del programa \n")
+
+        nombres = nombres_hardcode
+        legajos = legajos_hardcode
+        generos = generos_hardcore
+        notas = notas_hardcode
+
+
+        match opciones:
+            case "1":
+                print(" -- OPCION VACIA -- Todos los datos estan hardcodeados \n\n")
+
+            case "2":
+                mostrar_uno_y_todos(nombres,notas,generos,legajos)
+            case "3":
+                promedios_guardados = promedio_en_matrices(notas)
+                for i in range(len(promedios_guardados)):
+                    print(f"Alumno: {nombres[i]} - promedio :{promedios_guardados[i]}")
+            case "4":
+                mostrar_ascendente_o_descendente(promedios_guardados,nombres,notas,generos,legajos)
+
+            case "5":
+                pass
+            case "6":
+                mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos)
+            case "7":
+                pass
+            case "8":
+                print("saliendo del programa ... ")
+                False
+                break
+
+            case _:
+                print("opcion invalida, intentelo nuevamente")
+
+
+#menu_hardcodeado()
