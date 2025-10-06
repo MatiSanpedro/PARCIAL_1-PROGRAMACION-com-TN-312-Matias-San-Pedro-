@@ -83,11 +83,11 @@ def menu():
                     print(f"Alumno: {nombres[i]} - promedio :{promedios_guardados[i]}")
             case "4":
                 mostrar_ascendente_o_descendente(promedios_guardados,nombres,notas,generos,legajos)
-                
+
             case "5":
                 pass
             case "6":
-                pass
+                mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos)
             case "7":
                 pass
             case "8":
