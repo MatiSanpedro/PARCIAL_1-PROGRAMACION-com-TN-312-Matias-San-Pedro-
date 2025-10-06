@@ -286,6 +286,235 @@ def cargar_legajos_en(lista: list, nombres):
 
     lista = lista_suplente
     return lista
+ 
+
+
+#i + 1, 
+
+
+
+#funcion util 3 
+#carga aleatoria
+def cargar_aleatoriamente(matriz:list):
+    seguir = "S"
+    while seguir == "S":
+        fila = int(input("indice de fila:  "))
+        columna = int(input("indice de columna: "))
+        dato = int(input("ingrese el numero a cargar"))
+        matriz[fila][columna] = dato
+        seguir = input("desea seguir cargando?  S/N   ")
+
+    return matriz 
+
+
+
+
+
+
+#busqueda en matrices
+
+
+
+#funcion util 4 
+#buscar valor entero en matriz 
+def buscar_valor_entero(matriz:list,valor:int):
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == valor:
+                print(f"Se encontro el numero en fila {i} columna {j}! ")
+
+    
+#buscar valor flotante en matriz 
+def buscar_valor_flotante(matriz:list,valor:float):
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            if matriz[i][j] == valor:
+                print(f"Se encontro el numero en fila {i} columna {j}! ")
+
+
+#trabaja con listas de float
+#busca los numeros mayores o iguales al ingresado 
+def mayor_o_igual_float_listas(lista:list,valor,lista_nombres:list):
+
+    for i in range(len(lista)):
+        if lista[i] > valor:
+            print(f"Promedio : {lista[i]} alumno : {lista_nombres[i]} ")
+
+        if lista[i] == valor:
+            print(f"Promedio :  {valor} alumno : {lista_nombres[i]}")
+
+
+
+
+#esto trabaja con matrices (lista de listas) 
+def buscar_mayor_o_igual_flotante_matrices(lista:list,valor):
+    for i in range(len(lista)):
+        for j in range(len(lista[i])):
+            if lista[i][j] == round(valor):
+                print(f"Se encontro el promedio {valor} en fila {i} columna {j} ")
+
+            if lista[i][j] > valor:
+                print(f"se encontro  {lista[i][j]} en fila {i} columna {j} ")
+            
+
+
+
+    
+
+
+
+#buscar mayor con SWAP 
+def ubicar_mayor(lista:list):
+    ingreso = 1
+    
+    for i in range(len(lista)):
+        for j in range(len(lista[i])):
+            if lista[i][j] > ingreso: #si a es mayor a b
+                temp = lista[i][j]   #guardo a (osea el mayor) en temp 
+                lista[i][j] = ingreso      #en a guardo el otro valor menor 
+                ingreso = temp   #y en b guardo el valor de temp ( osea el mayor )
+              #  print(f"el mayor es {ingreso} ubicado en {i}, {j}")
+    return ingreso 
+
+
+
+
+
+#promedios
+#en lista simple
+def funcion_promedio(listo:list):
+    suma = 0
+    for i in listo:
+        suma += i
+        promedio = suma / len(listo)
+        
+    return promedio
+
+
+
+#promedio en matrices
+def promedio_en_matrices(matriz:list)->list[float]:
+    promedios_guardados = []
+   
+
+    for i in matriz:   #recorro la matriz 
+        suma_de_numeros = 0
+
+        for j in i: #recorro numero por numero dentro de las sublistas 
+            suma_de_numeros += j  # aca sumo cada elemento de la sublista [0,1,2,3,4] = [10] por ejemplo
+             
+        promedio = suma_de_numeros /len(i) #la suma de numeros dividida el largo de la sublista  [10] / 5 
+        promedios_guardados += [promedio] #lo sumo a la lista final
+            
+   
+    return promedios_guardados
+
+
+'''#probar esto antes de usarlo seriamente 
+def con_esto_promedio_listas(listo: list) -> list:
+    n = len(listo)
+    promedios = [0.0] * n            # pre-alocación (no append)
+    for i in range(n):
+        sub = listo[i]               # la sublista actual
+        total = 0
+        # sumar los elementos sin usar sum()
+        for j in range(len(sub)):
+            total = total + sub[j]   # suma acumulada (algorítmica)
+        # calcular promedio (si la sublista no está vacía)
+        if len(sub) != 0:
+            promedios[i] = total / len(sub)
+        else:
+            promedios[i] = 0.0
+    return promedios
+
+'''
+
+
+
+#esta genera notas con random
+def notas_creadas(notas:list):
+    
+    for i in range(3):   #genera 3 
+        lista_notas = random.randint(1,10) #entre 1 y 10
+        notas[i] = lista_notas    #las agrega a una lista y devuelve 
+
+    return notas 
+
+
+#crea una lista simple
+def crear_lista(cantidad:int):
+    lista = [0] * cantidad
+
+    return lista 
+
+
+
+#valida si lo seleccionado es numero, devuelve True/False
+def validar_SOLOUNO_numero_booleano(caracter: str) -> bool:
+    if ord(caracter) >= 48 and ord(caracter) <= 57:
+        return True  
+    else:
+        return False 
+
+
+#hecha en clase por un compañero 
+#devuelve el indice de un elemento 
+def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
+    indice_elemento = -1 # inicializado en el caso de no haberlo encontrado
+    
+    for i in range(len(lista)):
+        if lista[i] == dato_a_buscar:
+            indice_elemento = i # Cambiar a indice del elemento si se encuenatr
+            break # cortar ejecucion debido a que se encontro
+    
+    return indice_elemento
+
+
+
+#funcion del punto 2 
+def imprimir_todo(nombres, notas, generos, legajos):
+    print(f"{'NOMBRE':<10} | {'NOTAS':<20} | {'GENERO':<6} | {'LEGAJO':<6}")
+    print("-" * 55)  # línea 
+
+    for i in range(len(nombres)):
+        print(f"{nombres[i]:<10} | {str(notas[i]):<20} | {generos[i]:<6} | {legajos[i]:<6}")
+
+
+#Funcion del punto 2 
+def mostrar_uno(nombres,notas,generos,legajos):
+    ingreso = input("ingrese el nombre del estudiante que desea ver: ")
+    
+    if verificar_cadena_alfabetica(ingreso) == True:
+        for i in range(len(nombres)):
+            
+            if nombres[i] == ingreso:
+                print(f"{'NOMBRE' :<10}| {'NOTAS':<20}| {'GENERO':<6}| {'LEGAJO':<6}")
+                print(f"{nombres[i]:<10}| {str(notas[i]):<20}| {generos[i]:<6}| {legajos[i]:<6}")
+    else:
+        ingreso = input("ingrese el nombre del estudiante que desea ver: ")
+
+
+
+
+#ESTA FUNCION ENTERA ES EL PUNTO 2 
+def mostrar_uno_y_todos(nombres,notas,generos,legajos):
+    while True:
+        eleccion = input("Seleccione una opcion: \n 1- Mostrar todo \n 2- Mostrar un alumno \n 3-Volver")
+        match eleccion:
+            case "1":
+                imprimir_todo(nombres,notas,generos,legajos)
+                
+            case "2":
+                mostrar_uno(nombres,notas,generos,legajos)
+            case "3":
+                False
+                break
+
+
+
+
+
+#funciones del punto 4 
     
     
 #orden de lista simple ascendente 
@@ -383,236 +612,6 @@ def ordenar_lista_por_promedio_descendente(promedios,nombres,notas,generos,legaj
 
 
 
-
-
-
-#i + 1, 
-
-
-
-#funcion util 3 
-#carga aleatoria
-def cargar_aleatoriamente(matriz:list):
-    seguir = "S"
-    while seguir == "S":
-        fila = int(input("indice de fila:  "))
-        columna = int(input("indice de columna: "))
-        dato = int(input("ingrese el numero a cargar"))
-        matriz[fila][columna] = dato
-        seguir = input("desea seguir cargando?  S/N   ")
-
-    return matriz 
-
-
-
-
-
-
-#busqueda en matrices
-
-
-
-#funcion util 4 
-#buscar valor entero en matriz 
-def buscar_valor_entero(matriz:list,valor:int):
-    for i in range(len(matriz)):
-        for j in range(len(matriz[i])):
-            if matriz[i][j] == valor:
-                print(f"Se encontro el numero en fila {i} columna {j}! ")
-
-    
-#buscar valor flotante en matriz 
-def buscar_valor_flotante(matriz:list,valor:float):
-    for i in range(len(matriz)):
-        for j in range(len(matriz[i])):
-            if matriz[i][j] == valor:
-                print(f"Se encontro el numero en fila {i} columna {j}! ")
-
-
-#trabaja con listas de float
-#busca los numeros mayores o iguales al ingresado 
-def mayor_o_igual_float_listas(lista:list,valor,lista_nombres:list):
-
-    for i in range(len(lista)):
-        if lista[i] > valor:
-            print(f"Promedio : {lista[i]} alumno : {lista_nombres[i]} ")
-
-        if lista[i] == valor:
-            print(f"Promedio :  {valor} alumno : {lista_nombres[i]}")
-
-
-
-
-#esto trabaja con matrices (lista de listas) 
-def buscar_mayor_o_igual_flotante_matrices(lista:list,valor):
-    for i in range(len(lista)):
-        for j in range(len(lista[i])):
-            if lista[i][j] == round(valor):
-                print(f"Se encontro el promedio {valor} en fila {i} columna {j} ")
-
-            if lista[i][j] > valor:
-                print(f"se encontro  {lista[i][j]} en fila {i} columna {j} ")
-            
-
-
-
-    
-
-
-
-#buscar mayor con SWAP 
-def ubicar_mayor(lista:list):
-    ingreso = 1
-    
-    for i in range(len(lista)):
-        for j in range(len(lista[i])):
-            if lista[i][j] > ingreso: #si a es mayor a b
-                temp = lista[i][j]   #guardo a (osea el mayor) en temp 
-                lista[i][j] = ingreso      #en a guardo el otro valor menor 
-                ingreso = temp   #y en b guardo el valor de temp ( osea el mayor )
-                print(f"el mayor es {ingreso} ubicado en {i}, {j}")
-    return ingreso 
-
-
-
-
-
-#promedios
-#en lista simple
-def funcion_promedio(listo:list):
-    suma = 0
-    for i in listo:
-        suma += i
-        promedio = suma / len(listo)
-        
-    return promedio
-
-
-
-#promedio en matrices
-def promedio_en_matrices(matriz:list)->list[float]:
-    promedios_guardados = []
-   
-
-    for i in matriz:   #recorro la matriz 
-        suma_de_numeros = 0
-
-        for j in i: #recorro numero por numero dentro de las sublistas 
-            suma_de_numeros += j  # aca sumo cada elemento de la sublista [0,1,2,3,4] = [10] por ejemplo
-             
-        promedio = suma_de_numeros /len(i) #la suma de numeros dividida el largo de la sublista  [10] / 5 
-        promedios_guardados += [promedio] #lo sumo a la lista final
-            
-   
-    return promedios_guardados
-
-
-'''#probar esto antes de usarlo seriamente 
-def con_esto_promedio_listas(listo: list) -> list:
-    n = len(listo)
-    promedios = [0.0] * n            # pre-alocación (no append)
-    for i in range(n):
-        sub = listo[i]               # la sublista actual
-        total = 0
-        # sumar los elementos sin usar sum()
-        for j in range(len(sub)):
-            total = total + sub[j]   # suma acumulada (algorítmica)
-        # calcular promedio (si la sublista no está vacía)
-        if len(sub) != 0:
-            promedios[i] = total / len(sub)
-        else:
-            promedios[i] = 0.0
-    return promedios
-
-'''
-
-
-
-#esta genera notas con random
-def notas_creadas(notas:list):
-    
-    for i in range(3):   #genera 3 
-        lista_notas = random.randint(1,10) #entre 1 y 10
-        notas[i] = lista_notas    #las agrega a una lista y devuelve 
-
-    return notas 
-
-
-#crea una lista simple
-def crear_lista(cantidad:int):
-    lista = [0] * cantidad
-
-    return lista 
-
-
-
-#valida si lo seleccionado es numero, devuelve True/False
-def validar_SOLOUNO_numero_booleano(caracter: str) -> bool:
-    if ord(caracter) >= 48 and ord(caracter) <= 57:
-        return True  
-    else:
-        return False 
-
-
-
-#devuelve el indice de un elemento 
-def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
-    indice_elemento = -1 # Inicializado en el caso de no haberlo encontrado
-    
-    for i in range(len(lista)):
-        if lista[i] == dato_a_buscar:
-            indice_elemento = i # Cambiar a indice del elemento si se encuentra
-            break # cortar ejecucion debido a que se encontro
-    
-    return indice_elemento
-
-
-
-#funcion del punto 2 
-def imprimir_todo(nombres, notas, generos, legajos):
-    print(f"{'NOMBRE':<10} | {'NOTAS':<20} | {'GENERO':<6} | {'LEGAJO':<6}")
-    print("-" * 55)  # línea 
-
-    for i in range(len(nombres)):
-        print(f"{nombres[i]:<10} | {str(notas[i]):<20} | {generos[i]:<6} | {legajos[i]:<6}")
-
-
-#Funcion del punto 2 
-def mostrar_uno(nombres,notas,generos,legajos):
-    ingreso = input("ingrese el nombre del estudiante que desea ver: ")
-    
-    if verificar_cadena_alfabetica(ingreso) == True:
-        for i in range(len(nombres)):
-            
-            if nombres[i] == ingreso:
-                print(f"{'NOMBRE' :<10}| {'NOTAS':<20}| {'GENERO':<6}| {'LEGAJO':<6}")
-                print(f"{nombres[i]:<10}| {str(notas[i]):<20}| {generos[i]:<6}| {legajos[i]:<6}")
-    else:
-        ingreso = input("ingrese el nombre del estudiante que desea ver: ")
-
-
-
-
-#ESTA FUNCION ENTERA ES EL PUNTO 2 
-def mostrar_uno_y_todos(nombres,notas,generos,legajos):
-    while True:
-        eleccion = input("Seleccione una opcion: \n 1- Mostrar todo \n 2- Mostrar un alumno \n 3-Volver")
-        match eleccion:
-            case "1":
-                imprimir_todo(nombres,notas,generos,legajos)
-                
-            case "2":
-                mostrar_uno(nombres,notas,generos,legajos)
-            case "3":
-                False
-                break
-
-
-
-
-
-#funciones del punto 4 
- 
 #recibe las listas para mostrar promedio mayor o menor segun se le indique por input 
 def mostrar_ascendente_o_descendente(promedios,nombres,notas,generos,legajos):
     while True:
@@ -669,9 +668,7 @@ print(maiores)
 '''
 
 
-
-
-    
+   
 
 
 
@@ -727,9 +724,123 @@ def mayor_float(lista:list[float]):
     return lista
 
 
-#proma = promedio_en_matrices(notas_hardcode)
-#finito = mayor_float(proma)
-#print(finito)
+
+#pruebas:  #requiere una lista, y un indice de columna (ej: lista1,2)
+def sumar_por_columnas_y_promediar(lista:list,columna:int):
+    suma_columnas = 0
+    divisor = len(lista)
+    
+    for i in lista:
+        suma_columnas += i[columna]
+    
+    promedio_de_columna = suma_columnas / divisor
+
+
+    return promedio_de_columna
+
+'''colu = sumar_por_columnas_y_promediar(notas_hardcode,0)
+print(colu)
+'''
+
+
+
+def sumar_y_ordenar_promedios_de_columnas(lista):
+    while True:
+        opciones = input("que desea ver? \n 1- Promedios de todas las notas de mayor a menor \n 2- Ver la materia con promedio mas alto \n 3-Volver  ")
+        match opciones:
+            case "1":
+                lista_de_sumas = []     #voy a guardar aca 
+                promedio_columna0 =sumar_por_columnas_y_promediar(lista,0) # esta funcion suma los numeros de una lista segun el indice que se le de, 0 en este caso
+                promedio_columna1 = sumar_por_columnas_y_promediar(lista,1) # retorna el promedio de las columnas de la lista 
+                promedio_columna2 = sumar_por_columnas_y_promediar(lista,2)
+                promedio_columna3 = sumar_por_columnas_y_promediar(lista,3)
+                promedio_columna4 = sumar_por_columnas_y_promediar(lista,4)
+                lista_de_sumas += [promedio_columna0]    #sumo todos a una lista final 
+                lista_de_sumas += [promedio_columna1]
+                lista_de_sumas += [promedio_columna2]
+                lista_de_sumas += [promedio_columna3]
+                lista_de_sumas += [promedio_columna4]
+
+                promedios_mayores = ordenar_lista_ascendente(lista_de_sumas)  #aca ordeno los promedios 
+                for i in range(len(promedios_mayores)):                       #imprimo prolijamente
+                    print(f"MATERIA_{i+1}: {str(promedios_mayores[i]) :<10}")  
+                                            #lo tengo que castear a string asi porque da error 
+            
+            case "2":
+                lista_de_sumas = []
+                promedio_columna0 =sumar_por_columnas_y_promediar(lista,0)
+                promedio_columna1 = sumar_por_columnas_y_promediar(lista,1)
+                promedio_columna2 = sumar_por_columnas_y_promediar(lista,2)
+                promedio_columna3 = sumar_por_columnas_y_promediar(lista,3)
+                promedio_columna4 = sumar_por_columnas_y_promediar(lista,4)
+                lista_de_sumas += [promedio_columna0]
+                lista_de_sumas += [promedio_columna1]
+                lista_de_sumas += [promedio_columna2]
+                lista_de_sumas += [promedio_columna3]
+                lista_de_sumas += [promedio_columna4]
+
+                lista_ordenada = ordenar_lista_ascendente(lista_de_sumas)
+                for i in range(len(lista_ordenada)):
+                    el_promedio_mayor = lista_de_sumas[0]
+                
+                print(f"LA MATERIA CON MAYOR PROMEDIO MAYOR ES  : {el_promedio_mayor} \n\n")
+
+            case "3":
+                break
+
+
+def encontrar_mayor_por_fila(matriz:list[int]) -> list[int]:
+    """Devuelve una lista con el mayor número de cada fila."""
+    mayores = []
+    for fila in matriz:
+        mayor = fila[0]  # asumimos el primero como el mayor
+        for num in fila:
+            if num > mayor:
+                mayor = num
+        mayores += [mayor]
+    return mayores
+
+
+
+
+
+#original
+'''def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
+    indice_elemento = -1 # inicializado en el caso de no haberlo encontrado
+    
+    for i in range(len(lista)):
+        if lista[i] == dato_a_buscar:
+            indice_elemento = i # Cambiar a indice del elemento si se encuenatr
+            break # cortar ejecucion debido a que se encontro
+    
+    return indice_elemento'''
+
+
+def retornar_indice_elemento_lista(lista:list, dato_a_buscar:int):
+    indice_elemento = -1 # inicializado en el caso de no haberlo encontrado
+    for i in range(len(lista)):
+        if lista[i] == dato_a_buscar:
+            indice_elemento = i # Cambiar a indice del elemento si se encuenatr
+            break # cortar ejecucion debido a que se encontro
+    
+    return indice_elemento
+
+
+
+def encontrar_mayor_por_fila_lista(matriz):
+    mayores = []
+
+    for i in range(len(matriz)):
+        mayor = matriz[i][0]
+        for j in range(len(matriz[i])):
+            if matriz[i][j] > mayor:
+                mayor = matriz[i][j]
+
+        mayores += [mayor]
+
+
+    return mayores
+
 
 
 
