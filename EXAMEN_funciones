@@ -1,8 +1,9 @@
 #FUNCIONES 
 
-#FUNCIONES DEL TRABAJO DE CLASE 
-import random 
+import random   #use esto para generar legajos y notas 
 
+
+#DATOS HARDCODEADOS
 legajos_hardcode = [ "36334","23303","19948","51506","37502","46221","45278","21671","30857",
             "17472","10607","46806","37082","16118","41920","16077","10307","29361",
             "10881","21688","42716","48423","34783","12972","46534","36969","15764","51323","49678","32078"]
@@ -53,7 +54,7 @@ notas_hardcode = [  [6,7,6,5,2], #0
 
 
 
-
+#FUNCIONES DEL PUNTO 1 
 
 def iniciar_matriz(cantidad_filas,cantidad_columnas,valor_inicial)->list:
     matriz = []
@@ -70,7 +71,7 @@ def iniciar_matriz(cantidad_filas,cantidad_columnas,valor_inicial)->list:
 
         
 
-#carga secuencial de matriz 
+#cargas 
 
 #CARGA SECUENCIAL TEXTO original 
 def cargar_matriz_secuencialmente_texto(matriz:list):
@@ -90,15 +91,6 @@ def cargar_matriz_secuencialmente_notas(matriz:list,lista_2):
 
     
     return matriz 
-
-
-'''am2 = ["juan","marcos","pedro","pepe","lola"]
-amt = [[0],[0],[0],[0],[0]]
-amt = cargar_matriz_secuencialmente_notas(amt,am2)
-print(amt)'''
-
-#cod_ascii = ord(str(i))
-#cod_ascii = ord(i)
 
 #verificar numero string 
 def verificar_numero_string(cadena):
@@ -157,11 +149,13 @@ def cargar_matriz_secuencialmente_numeros(matriz:list):
 
 
 
+#hecho por un compañero en clase 
+#valida si lo ingresado son letras 
 def verificar_cadena_alfabetica(cadena):
     bandera1 = False
     for i in cadena:
-            cod_ascii = ord(i)
-            if (cod_ascii >= 65 and cod_ascii <= 90) or (cod_ascii >= 97 and cod_ascii <= 122):
+            cod_ascii = ord(i) #convierte a ascii 
+            if (cod_ascii >= 65 and cod_ascii <= 90) or (cod_ascii >= 97 and cod_ascii <= 122): #verifica que sean letras, mayusculas o minusculas
                 bandera1 = True        
             
             else:
@@ -218,18 +212,19 @@ def cargar_matriz_secuencialmente_generos(matriz: list,nombres):
 
 
 #cargar notas en lista  + validacion de numero entre 1 y 10  
-def cargo_notas_en(lista,nombres):
-    lista_suplente = iniciar_matriz(30,5,0)
+def cargo_notas_en(lista,nombres)->list:
+    b = len(lista)                          
+    lista_suplente = iniciar_matriz(b,5,0)  #b = largo de lista
     for i in range(len(lista)):
         for j in range(len(lista[i])):
             while True:
                 notas = input(f"ingrese 5 notas, una a la vez para el alumno:{i}-{nombres[i]} lugar: {j+1} ")    
                 
                 if len(notas) == 2 and ord(notas[0])== ord("1") and ord(notas[1])== ord("0"): #si son dos cifras y a la vez son 1 y 0
-                    lista_suplente[i] = int(notas)     #añadir a la lista 
+                    lista_suplente[i][j] = int(notas)     #añadir a la lista 
                     break  #rompo aca para que no recorra todo el resto del codigo 
-
-                elif len(notas)== 2:  #si son dos cifras 
+                
+                elif len(notas)== 2 or len(notas)== 0:  #si son dos cifras o un espacio 
                     print("caracter/es no validos")
                     continue  #lo excluyo 
             
@@ -238,15 +233,20 @@ def cargo_notas_en(lista,nombres):
                         print("caracter invalido, ingrese un numero")
                         continue
                     else:               #lo que logre pasar por todo lo anterior es añadido 
-                        lista_suplente[i] = int(notas) 
+                        lista_suplente[i][j] = int(notas) 
                         break
                 if len(notas) >2:  # si el largo es mayor a dos, lo descarto  
                     print("invalido, la nota debe ser de 2 cifras como maximo")
                     continue
+                
+                
+                
+                
+                
                 break
                         #banderita = True
-        lista = lista_suplente
-                    
+        
+    lista = lista_suplente
     
         
 
@@ -310,7 +310,7 @@ def cargar_aleatoriamente(matriz:list):
 
 
 
-
+#funciones del material del campus: 
 #busqueda en matrices
 
 
@@ -471,16 +471,39 @@ def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
 
 
 
-#funcion del punto 2 
+#FUNCIONES DEL PUNTO 2 
+
+
+def convertir_lista_a_string(notas,nombres):
+
+    for i in range(len(nombres)):
+        # convierto la sublista de notas a texto limpio
+        cadena_notas = ""
+        for j in range(len(notas[i])):
+            cadena_notas += str(notas[i][j])
+            
+
+    
+    return cadena_notas
+
+
+
+
+
+#funcion de impresion de todas las variables 
 def imprimir_todo(nombres, notas, generos, legajos):
     print(f"{'NOMBRE':<10} | {'NOTAS':<20} | {'GENERO':<6} | {'LEGAJO':<6}")
     print("-" * 55)  # línea 
-
+    
     for i in range(len(nombres)):
-        print(f"{nombres[i]:<10} | {str(notas[i]):<20} | {generos[i]:<6} | {legajos[i]:<6}")
+        print(f"{nombres[i]} | {notas[i]} | {generos[i]} | {legajos[i]}")
 
 
-#Funcion del punto 2 
+
+
+
+
+#Esta muestra todos los datos de un alumno, recibe  
 def mostrar_uno(nombres,notas,generos,legajos):
     ingreso = input("ingrese el nombre del estudiante que desea ver: ")
     
@@ -489,14 +512,14 @@ def mostrar_uno(nombres,notas,generos,legajos):
             
             if nombres[i] == ingreso:
                 print(f"{'NOMBRE' :<10}| {'NOTAS':<20}| {'GENERO':<6}| {'LEGAJO':<6}")
-                print(f"{nombres[i]:<10}| {str(notas[i]):<20}| {generos[i]:<6}| {legajos[i]:<6}")
+                print(f"{nombres[i]}| {notas[i]}| {generos[i]}| {legajos[i]}")
     else:
         ingreso = input("ingrese el nombre del estudiante que desea ver: ")
 
 
 
 
-#ESTA FUNCION ENTERA ES EL PUNTO 2 
+#funcion del submenu punto 2 
 def mostrar_uno_y_todos(nombres,notas,generos,legajos):
     while True:
         eleccion = input("Seleccione una opcion: \n 1- Mostrar todo \n 2- Mostrar un alumno \n 3-Volver")
@@ -514,7 +537,7 @@ def mostrar_uno_y_todos(nombres,notas,generos,legajos):
 
 
 
-#funciones del punto 4 
+#FUNCIONES DEL PUNTO 4 
     
     
 #orden de lista simple ascendente 
@@ -574,41 +597,44 @@ def ordenar_lista_por_promedio_ascendente(promedios,nombres,notas,generos,legajo
                 legajos[i] = legajos[j]
                 legajos[j] = aux_leg
 
-    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
+    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10}        |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
     for q in range(len(promedios)):    
-        print(f"{promedios[q]:<10} |{nombres[q]:<10} |{str(notas[q]):<18} |{generos[q]:<6} |{legajos[q]:<10}")
+        print(f"{promedios[q]} |{nombres[q]} |{notas[q]} |{generos[q]} |{legajos[q]}")
 
 
 
 #ordenar lista con promedio descendente 
 def ordenar_lista_por_promedio_descendente(promedios,nombres,notas,generos,legajos):
     for i in range(len(promedios)):
-        for j in range(len(promedios)):
-            
-            if promedios[i] < promedios[j]:
-                aux_promedios = promedios[i] 
-                promedios[i] = promedios[j]
-                promedios[j] = aux_promedios
+            for j in range(len(promedios)):
+                
+                if promedios[i] < promedios[j]:
+                    aux_promedios = promedios[i] 
+                    promedios[i] = promedios[j]
+                    promedios[j] = aux_promedios
 
-                aux_nombres = nombres[i]
-                nombres[i] = nombres[j]
-                nombres[j] = aux_nombres
+                    aux_nombres = nombres[i]
+                    nombres[i] = nombres[j]
+                    nombres[j] = aux_nombres
 
-                aux_notas = notas[i]
-                notas[i] = notas[j]
-                notas[j] = aux_notas
+                    aux_notas = notas[i]
+                    notas[i] = notas[j]
+                    notas[j] = aux_notas
 
-                aux_generos = generos[i]
-                generos[i] = generos[j]
-                generos[j] = aux_generos
+                    aux_generos = generos[i]
+                    generos[i] = generos[j]
+                    generos[j] = aux_generos
 
-                aux_leg = legajos[i]
-                legajos[i] = legajos[j]
-                legajos[j] = aux_leg
-    
-    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
-    for q in range(len(promedios)):    
-        print(f"{promedios[q]:<10} |{nombres[q]:<10} |{str(notas[q]):<18} |{generos[q]:<6} |{legajos[q]:<10}")
+                    aux_leg = legajos[i]
+                    legajos[i] = legajos[j]
+                    legajos[j] = aux_leg
+
+    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10}        |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
+    for q in range(len(promedios)):
+        print(f"{promedios[q]} |{nombres[q]} |{notas[q]} |{generos[q]} |{legajos[q]}")
+
+
+
 
 
 
@@ -640,9 +666,7 @@ def imprimir_con_promedio(promedio,nombres,notas,generos,legajos):
 
 
 
-#funciones punto 5 
-
-
+#FUNCIONES DEL PUNTO 5 
 
     
 #ubica y devuelve el mayor de cada sublista (trabaja matrices)
@@ -661,71 +685,7 @@ def mayores_en_sublistas(matriz: list):
     return mayores
 
 
-
-
-'''maiores = mayores_en_sublistas(notas_hardcode)
-print(maiores)
-'''
-
-
-   
-
-
-
-#FUNCIONES PUNTO 6 
-
-
-def mostrar_uno_por_legajo(promedios,nombres,notas,generos,legajos):
-    ingreso = input("ingrese el legajo del estudiante que desea ver: ")
-    
-    if verificar_numero_string(ingreso) == True:
-        for i in range(len(legajos)):
-            
-            if legajos[i] == ingreso:
-                print(f"{'NOMBRE' :<10}| {'NOTAS':<20}|{'promedio':<10} |{'GENERO':<6}| {'LEGAJO':<6}")
-                print(f"{nombres[i]:<10}| {str(notas[i]):<20}|{promedios[i]:<10} |{generos[i]:<6}| {legajos[i]:<6}")
-    else:
-        ingreso = input("ingrese el legajo del estudiante que desea ver: ")
-
-
-def imprimir_con_promedio_legajo(promedio,nombres,notas,generos,legajos):
-    print(f"|{'LEGAJO':<10} |{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} ")
-    for i in range(len(nombres)):
-        
-        print(f"{legajos[i]:<10} |{promedio[i]:<10} |{nombres[i]:<10} |{str(notas[i]):<18} |{generos[i]:<6} |")
-
-
-def mostrar_todo_por_legajo(promedios,nombres,notas,generos,legajos):
-    while True:
-        ingreso = input("Que desea hacer ? \n -1 Buscar un estudiante ingresando su legajo \n 2- mostrar todos")
-        
-        match ingreso:
-            case "1":
-                mostrar_uno_por_legajo(promedios,nombres,notas,generos,legajos)
-            case "2":
-                imprimir_con_promedio_legajo(promedios,nombres,notas,generos,legajos)
-            case "3":
-
-                break
-
-
-
-    
-
-
-def mayor_float(lista:list[float]):
-    for i in range(len(lista)):
-        for j in range(len(lista)):
-            if lista[i] > lista[j]:
-                aux = lista[i]
-                lista[i] = lista[j]
-                lista[j] = aux 
-            
-    return lista
-
-
-
-#pruebas:  #requiere una lista, y un indice de columna (ej: lista1,2)
+ #requiere una lista, y un indice de columna (ej: lista1,2)
 def sumar_por_columnas_y_promediar(lista:list,columna:int):
     suma_columnas = 0
     divisor = len(lista)
@@ -738,12 +698,11 @@ def sumar_por_columnas_y_promediar(lista:list,columna:int):
 
     return promedio_de_columna
 
-'''colu = sumar_por_columnas_y_promediar(notas_hardcode,0)
-print(colu)
-'''
 
 
 
+#esta funcion recibe la matriz de calificaciones, calcula promedios y imprime con formato 
+#controla el sub menu del punto 5 
 def sumar_y_ordenar_promedios_de_columnas(lista):
     while True:
         opciones = input("que desea ver? \n 1- Promedios de todas las notas de mayor a menor \n 2- Ver la materia con promedio mas alto \n 3-Volver  ")
@@ -763,8 +722,8 @@ def sumar_y_ordenar_promedios_de_columnas(lista):
 
                 promedios_mayores = ordenar_lista_ascendente(lista_de_sumas)  #aca ordeno los promedios 
                 for i in range(len(promedios_mayores)):                       #imprimo prolijamente
-                    print(f"MATERIA_{i+1}: {str(promedios_mayores[i]) :<10}")  
-                                            #lo tengo que castear a string asi porque da error 
+                    print(f"MATERIA_{i+1}: {promedios_mayores[i]}")  
+                                            
             
             case "2":
                 lista_de_sumas = []
@@ -789,6 +748,64 @@ def sumar_y_ordenar_promedios_de_columnas(lista):
                 break
 
 
+#ordena lista de flotantes, devuelve lista de flotantes 
+def mayor_float(lista:list[float]):
+    for i in range(len(lista)):
+        for j in range(len(lista)):
+            if lista[i] > lista[j]:
+                aux = lista[i]
+                lista[i] = lista[j]
+                lista[j] = aux 
+            
+    return lista
+
+
+
+#FUNCIONES PUNTO 6 
+
+
+#esta funcion recibe 5 parametros junto con los promedios, imprime los datos de el indice que se le ingrese 
+def mostrar_uno_por_legajo(promedios,nombres,notas,generos,legajos):
+    ingreso = input("ingrese el legajo del estudiante que desea ver: ")
+    
+    if verificar_numero_string(ingreso) == True:
+        for i in range(len(legajos)):
+            
+            if legajos[i] == ingreso:
+                print(f"{'NOMBRE' :<10}| {'NOTAS':<20}|{'promedio':<10} |{'GENERO':<6}| {'LEGAJO':<6}")
+                print(f"{nombres[i]}| {notas[i]}|{promedios[i]} |{generos[i]}| {legajos[i]}")
+    else:
+        ingreso = input("ingrese el legajo del estudiante que desea ver: ")
+
+#funcion de impresion
+def imprimir_con_promedio_legajo(promedio,nombres,notas,generos,legajos):
+    print(f"|{'LEGAJO':<10} |{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} ")
+    for i in range(len(nombres)):
+        
+        print(f"{legajos[i]} |{promedio[i]} |{nombres[i]} |{notas[i]} |{generos[i]} |")
+
+#esta funcion controla el sub menu del punto 6 
+def mostrar_todo_por_legajo(promedios,nombres,notas,generos,legajos):
+    while True:
+        ingreso = input("Que desea hacer ? \n -1 Buscar un estudiante ingresando su legajo \n 2- mostrar todos")
+        
+        match ingreso:
+            case "1":
+                mostrar_uno_por_legajo(promedios,nombres,notas,generos,legajos)
+            case "2":
+                imprimir_con_promedio_legajo(promedios,nombres,notas,generos,legajos)
+            case "3":
+
+                break
+
+
+
+    
+#VARIOS 
+
+
+
+#funcion hecha por un compañero en clase 
 def encontrar_mayor_por_fila(matriz:list[int]) -> list[int]:
     """Devuelve una lista con el mayor número de cada fila."""
     mayores = []
@@ -805,25 +822,16 @@ def encontrar_mayor_por_fila(matriz:list[int]) -> list[int]:
 
 
 #original
-'''def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
+def retornar_indice_elemento(lista: list, dato_a_buscar: int) -> int :
     indice_elemento = -1 # inicializado en el caso de no haberlo encontrado
     
-    for i in range(len(lista)):
-        if lista[i] == dato_a_buscar:
-            indice_elemento = i # Cambiar a indice del elemento si se encuenatr
-            break # cortar ejecucion debido a que se encontro
-    
-    return indice_elemento'''
-
-
-def retornar_indice_elemento_lista(lista:list, dato_a_buscar:int):
-    indice_elemento = -1 # inicializado en el caso de no haberlo encontrado
     for i in range(len(lista)):
         if lista[i] == dato_a_buscar:
             indice_elemento = i # Cambiar a indice del elemento si se encuenatr
             break # cortar ejecucion debido a que se encontro
     
     return indice_elemento
+
 
 
 
@@ -842,5 +850,20 @@ def encontrar_mayor_por_fila_lista(matriz):
     return mayores
 
 
+#funciones del punto 7 
+
+def contador_de_notas(lista:list)->list:
+    numeros_sin_repetir = []
+    contador = []
+    for i in lista:
+        for numero in i:
+            bandera = False
+            if numero == contador:
+                contador[numero] +=1 
+            else:
+                contador[numero] = 1
+
+    
+            
 
 
