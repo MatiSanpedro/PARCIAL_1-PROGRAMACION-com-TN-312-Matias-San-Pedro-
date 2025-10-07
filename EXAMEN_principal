@@ -3,9 +3,38 @@ import random
 from  EXAMEN_funciones import * 
 
 
-legajos_hardcode = [ "36334","23303","19948","51506","37502","46221","45278","21671","30857",
-            "17472","10607","46806","37082","16118","41920","16077","10307","29361",
-            "10881","21688","42716","48423","34783","12972","46534","36969","15764","51323","49678","32078"]
+legajos_hardcode = [ "36334",
+                    "23303",
+                    "19948",
+                    "51506",
+                    "37502",
+                    "46221",
+                    "45278",
+                    "21671",
+                    "30857",
+                    "17472",
+                    "10607",
+                    "46806",
+                    "37082",
+                    "16118",
+                    "41920",
+                    "16077",
+                    "10307",
+                    "29361",
+                    "10881",
+                    "21688",
+                    "42716",
+                    "48423",
+                    "34783",
+                    "12972",
+                    "46534",
+                    "36969",
+                    "15764",
+                    "51323",
+                    "49678",
+                    "32078"]
+
+
 
 
 nombres_hardcode = ["ana","carlos","maria","marta","sergio","andres","martin","paula","melina","florencia","marcos",
@@ -56,24 +85,29 @@ notas_hardcode = [  [6,7,6,5,2], #0
 def menu():
     while True:
         opciones = input("x----Bienvenido----x \nQue desea hacer? \n 1-Cargar datos: |Nombres|Notas|Legajos|Generos \n 2- Mostrar todos \n 3-Mostrar promedios \n 4- Mostrar promedios por orden \n 5- Mostrar las materias con mayor promedio \n 6- Buscar alumno por legajo \n 7- Mostrar calificaciones repetidas \n 8-Salir del programa ")
-        #matrices
-        nombres = iniciar_matriz(30,1,0)
-        legajos = iniciar_matriz(30,1,0)
-        generos = iniciar_matriz(30,1,0)
-        notas = iniciar_matriz(30,5,0)
+        
+       
 
 
         match opciones:
             case "1":
+                #matrices
+                nombres = iniciar_matriz(30,1,0)
+                notas = iniciar_matriz(30,5,0)
+                legajos = iniciar_matriz(30,1,0)
+                generos = iniciar_matriz(30,1,0)
+                
                 nombres = cargar_matriz_secuencialmente_nombres(nombres)
                 print("todos los nombres fueron cargados correctamente")
+                
                 notas = cargo_notas_en(notas,nombres)
                 print("las notas fueron correctamente cargadas")
+                
                 legajos = cargar_legajos_en(legajos,nombres)
                 print("legajos cargados correctamente")
                 generos = cargar_matriz_secuencialmente_generos(generos,nombres)
                 print("generos cargados correctamente")
-
+                
 
             case "2":
                 mostrar_uno_y_todos(nombres,notas,generos,legajos)
@@ -105,7 +139,7 @@ def menu():
 
 
 
-menu()
+#menu()
 
 
 
@@ -149,4 +183,4 @@ def menu_hardcodeado():
                 print("opcion invalida, intentelo nuevamente")
 
 
-#menu_hardcodeado()
+menu_hardcodeado()
