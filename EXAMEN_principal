@@ -90,12 +90,12 @@ def menu():
 
 
         match opciones:
-            case "1":
+            case "1":     #hardcodear 5 puntos 
                 #matrices
-                nombres = iniciar_matriz(30,1,0)
-                notas = iniciar_matriz(30,5,0)
-                legajos = iniciar_matriz(30,1,0)
-                generos = iniciar_matriz(30,1,0)
+                nombres = iniciar_matriz(5,1,0)
+                notas = iniciar_matriz(5,5,0)
+                legajos = iniciar_matriz(5,1,0)
+                generos = iniciar_matriz(5,1,0)
                 
                 nombres = cargar_matriz_secuencialmente_nombres(nombres)
                 print("todos los nombres fueron cargados correctamente")
@@ -109,21 +109,24 @@ def menu():
                 print("generos cargados correctamente")
                 
 
-            case "2":
-                mostrar_uno_y_todos(nombres,notas,generos,legajos)
+            case "2":   #solo mostrar todos 
+                imprimir_todo(nombres,notas,generos,legajos)
+
             case "3":
-                promedios_guardados = promedio_en_matrices(notas)
-                for i in range(len(promedios_guardados)):
-                    print(f"Alumno: {nombres[i]} - promedio :{promedios_guardados[i]}")
+                promedios_guardados = promedio_en_matrices(notas) #sin mostrar este punto 
+                print("promedios calculados y guardados.")
+
             case "4":
                 mostrar_ascendente_o_descendente(promedios_guardados,nombres,notas,generos,legajos)
 
-            case "5":
+            case "5":  #mostrar solamente cual es la materia con promedio mayor o las, si se repite 
                 sumar_y_ordenar_promedios_de_columnas(notas)
+
             case "6":
-                mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos)
+                mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos) #realizar aca una funcion que recorra, dentro de esa llamo a una funcion que muestre un solo elemento 
             case "7":
-                pass
+                contador_de_notas(notas)
+                
             case "8":
                 print("saliendo del programa ... ")
                 False
@@ -173,7 +176,8 @@ def menu_hardcodeado():
             case "6":
                 mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos)
             case "7":
-                pass
+                contador_de_notas(notas_hardcode)
+                
             case "8":
                 print("saliendo del programa ... ")
                 False
