@@ -572,40 +572,35 @@ def ordenar_lista_descendente(lista:list):
 
 
 #orden de lista ascendente 
-def ordenar_lista_por_promedio_ascendente(promedios,nombres,notas,generos,legajos):
-    for i in range(len(promedios)):
-        for j in range(len(promedios)):
-            
-            if promedios[i] > promedios[j]:
-                aux_promedios = promedios[i] 
-                promedios[i] = promedios[j]
-                promedios[j] = aux_promedios
+def ordenar_lista_por_promedio_ascendente_descendente(promedios,nombres,notas,generos,legajos,bandera):
+    if bandera == True:
+        for i in range(len(promedios)):
+            for j in range(len(promedios)):
+                
+                if promedios[i] > promedios[j]:
+                    aux_promedios = promedios[i] 
+                    promedios[i] = promedios[j]
+                    promedios[j] = aux_promedios
 
-                aux_nombres = nombres[i]
-                nombres[i] = nombres[j]
-                nombres[j] = aux_nombres
+                    aux_nombres = nombres[i]
+                    nombres[i] = nombres[j]
+                    nombres[j] = aux_nombres
 
-                aux_notas = notas[i]
-                notas[i] = notas[j]
-                notas[j] = aux_notas
+                    aux_notas = notas[i]
+                    notas[i] = notas[j]
+                    notas[j] = aux_notas
 
-                aux_generos = generos[i]
-                generos[i] = generos[j]
-                generos[j] = aux_generos
+                    aux_generos = generos[i]
+                    generos[i] = generos[j]
+                    generos[j] = aux_generos
 
-                aux_leg = legajos[i]
-                legajos[i] = legajos[j]
-                legajos[j] = aux_leg
-
-    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10}        |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
-    for q in range(len(promedios)):    
-        print(f"{promedios[q]} |{nombres[q]} |{notas[q]} |{generos[q]} |{legajos[q]}")
+                    aux_leg = legajos[i]
+                    legajos[i] = legajos[j]
+                    legajos[j] = aux_leg
 
 
-
-#ordenar lista con promedio descendente 
-def ordenar_lista_por_promedio_descendente(promedios,nombres,notas,generos,legajos):
-    for i in range(len(promedios)):
+    if bandera == False:
+       for i in range(len(promedios)):
             for j in range(len(promedios)):
                 
                 if promedios[i] < promedios[j]:
@@ -628,14 +623,14 @@ def ordenar_lista_por_promedio_descendente(promedios,nombres,notas,generos,legaj
                     aux_leg = legajos[i]
                     legajos[i] = legajos[j]
                     legajos[j] = aux_leg
-
-    print(f"{'PROMEDIO':<10} |{'NOMBRES':<10}        |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
-    for q in range(len(promedios)):
-        print(f"{promedios[q]} |{nombres[q]} |{notas[q]} |{generos[q]} |{legajos[q]}")
-
-
+ 
+  #          print(f"{'PROMEDIO':<10} |{'NOMBRES':<10}        |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
+      #      for q in range(len(promedios)):    
+  #             print(f"{promedios[q]} |{nombres[q]} |{notas[q]} |{generos[q]} |{legajos[q]}")
 
 
+
+#ordenar lista con promedio descendente 
 
 
 #recibe las listas para mostrar promedio mayor o menor segun se le indique por input 
@@ -645,11 +640,11 @@ def mostrar_ascendente_o_descendente(promedios,nombres,notas,generos,legajos):
         
         match eleccion:
             case "1":
-                ordenar_lista_por_promedio_ascendente(promedios,nombres,notas,generos,legajos)
-
+                ordenar_lista_por_promedio_ascendente_descendente(promedios,nombres,notas,generos,legajos,bandera=True)
+                imprimir_con_promedio(promedios,nombres,notas,generos,legajos)
             case "2":
-                ordenar_lista_por_promedio_descendente(promedios,nombres,notas,generos,legajos)
-
+                ordenar_lista_por_promedio_ascendente_descendente(promedios,nombres,notas,generos,legajos,bandera=False)
+                imprimir_con_promedio(promedios,nombres,notas,generos,legajos)
             case "3":
                 False
                 break
@@ -782,7 +777,7 @@ def imprimir_con_promedio_legajo(promedio,nombres,notas,generos,legajos):
     print(f"|{'LEGAJO':<10} |{'PROMEDIO':<10} |{'NOMBRES':<10} |{'NOTAS':<18} |{'GENERO':<6} ")
     for i in range(len(nombres)):
         
-        print(f"{legajos[i]} |{promedio[i]} |{nombres[i]} |{notas[i]} |{generos[i]} |")
+        print(f"{legajos[i]}       |{promedio[i]}         |{nombres[i]}       |{notas[i]}       |{generos[i]} |")
 
 #esta funcion controla el sub menu del punto 6 
 def mostrar_todo_por_legajo(promedios,nombres,notas,generos,legajos):
@@ -795,7 +790,6 @@ def mostrar_todo_por_legajo(promedios,nombres,notas,generos,legajos):
             case "2":
                 imprimir_con_promedio_legajo(promedios,nombres,notas,generos,legajos)
             case "3":
-
                 break
 
 
@@ -852,18 +846,53 @@ def encontrar_mayor_por_fila_lista(matriz):
 
 #funciones del punto 7 
 
-def contador_de_notas(lista:list)->list:
-    numeros_sin_repetir = []
-    contador = []
-    for i in lista:
-        for numero in i:
-            bandera = False
-            if numero == contador:
-                contador[numero] +=1 
-            else:
-                contador[numero] = 1
+def contador_de_notas(lista:list):
+    cantidades = [1,2,3,4,5,6,7,8,9,10]
+
+    contador_1 = 0
+    contador_2 = 0
+    contador_3 = 0
+    contador_4 = 0
+    contador_5 = 0
+    contador_6 = 0
+    contador_7 = 0
+    contador_8 = 0
+    contador_9 = 0
+    contador_10 = 0
 
     
+    for i in lista:
+        for numero in i:
+            if numero == 1:
+                contador_1 +=1
+            if numero ==2:
+                contador_2 +=1
+            if numero == 3:
+                contador_3 +=1
+            if numero == 4:
+                contador_4 +=1
+            if numero == 5: 
+                contador_5 +=1
+            if numero == 6:
+                contador_6 +=1
+            if numero == 7:
+                contador_7 +=1
+            if numero == 8:
+                contador_8 +=1
+            if numero == 9:
+                contador_9 +=1
+            if numero == 10:
+                contador_10 +=1
             
-
+    print(f"{'NUMERO':<2} |  {'CANTDAD DE REPETICIONES}':<6} ")
+    print(f"{cantidades[0]:<6}  {contador_1:>6} ")
+    print(f"{cantidades[1]:<6}  {contador_2:>6} ")
+    print(f"{cantidades[2]:<6}  {contador_3:>6} ")
+    print(f"{cantidades[3]:<6}  {contador_4:>6} ")
+    print(f"{cantidades[4]:<6}  {contador_5:>6} ")
+    print(f"{cantidades[5]:<6}  {contador_6:>6} ")
+    print(f"{cantidades[6]:<6}  {contador_7:>6} ")
+    print(f"{cantidades[7]:<6}  {contador_8:>6} ")
+    print(f"{cantidades[8]:<6}  {contador_9:>6} ")
+    print(f"{cantidades[9]:<6}  {contador_10:>6} ")
 
