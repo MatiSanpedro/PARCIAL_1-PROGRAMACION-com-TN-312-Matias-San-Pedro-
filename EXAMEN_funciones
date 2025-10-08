@@ -567,9 +567,8 @@ def ordenar_lista_descendente(lista:list):
     return lista
 
 
-# ESTAS SOLAMENTE IMPRIMEN  
+ 
 # misma logica que las funciones de arriba, pero con mas variables: 
-
 
 #orden de lista ascendente 
 def ordenar_lista_por_promedio_ascendente_descendente(promedios,nombres,notas,generos,legajos,bandera):
@@ -598,7 +597,7 @@ def ordenar_lista_por_promedio_ascendente_descendente(promedios,nombres,notas,ge
                     legajos[i] = legajos[j]
                     legajos[j] = aux_leg
 
-
+                   #ordenar lista con promedio descendente 
     if bandera == False:
        for i in range(len(promedios)):
             for j in range(len(promedios)):
@@ -624,13 +623,6 @@ def ordenar_lista_por_promedio_ascendente_descendente(promedios,nombres,notas,ge
                     legajos[i] = legajos[j]
                     legajos[j] = aux_leg
  
-  #          print(f"{'PROMEDIO':<10} |{'NOMBRES':<10}        |{'NOTAS':<18} |{'GENERO':<6} |{'LEGAJO':<10}")
-      #      for q in range(len(promedios)):    
-  #             print(f"{promedios[q]} |{nombres[q]} |{notas[q]} |{generos[q]} |{legajos[q]}")
-
-
-
-#ordenar lista con promedio descendente 
 
 
 #recibe las listas para mostrar promedio mayor o menor segun se le indique por input 
