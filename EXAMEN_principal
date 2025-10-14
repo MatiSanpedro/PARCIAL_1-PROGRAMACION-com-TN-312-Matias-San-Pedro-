@@ -90,45 +90,48 @@ def menu():
 
 
         match opciones:
-            case "1":     #hardcodear 5 puntos 
+            case "1":     
                 #matrices
+                #cargar datos :
                 nombres = iniciar_matriz(5,1,0)
                 notas = iniciar_matriz(5,5,0)
                 legajos = iniciar_matriz(5,1,0)
                 generos = iniciar_matriz(5,1,0)
                 
+                legajos = cargar_legajos_en(legajos,nombres)
+                print("legajos cargados correctamente")
+
                 nombres = cargar_matriz_secuencialmente_nombres(nombres)
                 print("todos los nombres fueron cargados correctamente")
                 
-                notas = cargo_notas_en(notas,nombres)
+                notas = cargo_notas_en(notas,legajos,nombres)
                 print("las notas fueron correctamente cargadas")
                 
-                legajos = cargar_legajos_en(legajos,nombres)
-                print("legajos cargados correctamente")
+                
                 generos = cargar_matriz_secuencialmente_generos(generos,nombres)
                 print("generos cargados correctamente")
                 
 
-            case "2":   #solo mostrar todos 
+            case "2":   #CORRECCION: solo mostrar todos 
                 imprimir_todo(nombres,notas,generos,legajos)
 
-            case "3":
-                promedios_guardados = promedio_en_matrices(notas) #sin mostrar este punto 
+            case "3":  # calcular promedios 
+                promedios_guardados = promedio_en_matrices(notas) #CORRECCION: sin mostrar este punto 
                 print("promedios calculados y guardados.")
 
-            case "4":
+            case "4":  # mostrar promedios ascendente - descendente 
                 mostrar_ascendente_o_descendente(promedios_guardados,nombres,notas,generos,legajos)
 
-            case "5":  #mostrar solamente cual es la materia con promedio mayor o las, si se repite 
+            case "5":  #CORRECCION: mostrar solamente cual es la materia con promedio mayor o las, si se repite 
                 sumar_y_ordenar_promedios_de_columnas(notas)
 
-            case "6":
-                mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos) #realizar aca una funcion que recorra, dentro de esa llamo a una funcion que muestre un solo elemento 
+            case "6": #buscar por legajo - mostrar uno 
+                imprimir_con_promedio_legajo(promedios_guardados,nombres,notas,generos,legajos) #CORRECCION : realizar aca una funcion que recorra, dentro de esa llamo a una funcion que muestre un solo elemento 
             
-            case "7":
+            case "7": #CORRECCION: mostrar notas repetidas con titular de numero y cantidad de repeticiones  
                 contador_de_notas(notas)
                 
-            case "8":
+            case "8":  #salir 
                 print("saliendo del programa ... ")
                 False
                 break
@@ -142,7 +145,7 @@ def menu():
 
 
 
-#menu()
+menu()
 
 
 
@@ -157,40 +160,31 @@ def menu_hardcodeado():
 
 
         match opciones:
-            case "1":     #hardcodear 5 puntos 
-                #matrices
-                                
-                nombres = cargar_matriz_secuencialmente_nombres(nombres)
-                print("todos los nombres fueron cargados correctamente")
-                
-                notas = cargo_notas_en(notas,nombres)
-                print("las notas fueron correctamente cargadas")
-                
-                legajos = cargar_legajos_en(legajos,nombres)
-                print("legajos cargados correctamente")
-                generos = cargar_matriz_secuencialmente_generos(generos,nombres)
-                print("generos cargados correctamente")
+            case "1":     
+                #matrices        
+            
+                print(" OPCION VACIA, los datos estan hardcodeados")
                 
 
-            case "2":   #solo mostrar todos 
+            case "2":   #CORRECCION: solo mostrar todos 
                 imprimir_todo(nombres,notas,generos,legajos)
 
-            case "3":
-                promedios_guardados = promedio_en_matrices(notas) #sin mostrar este punto 
+            case "3": #calcular promedios  | CORRECCION: sin mostrar/imprimir este punto
+                promedios_guardados = promedio_en_matrices(notas)  
                 print("\npromedios calculados y guardados. \n")
 
-            case "4":
+            case "4": #mostrar promedios ascendente - descendente 
                 mostrar_ascendente_o_descendente(promedios_guardados,nombres,notas,generos,legajos)
                 
-            case "5":  #mostrar solamente cual es la materia con promedio mayor o las, si se repite 
+            case "5":  #CORRECCION: mostrar solamente cual es la materia con promedio mayor o las, si se repite
                 sumar_y_ordenar_promedios_de_columnas(notas)
 
-            case "6":
-                mostrar_todo_por_legajo(promedios_guardados,nombres,notas,generos,legajos) #realizar aca una funcion que recorra, dentro de esa llamo a una funcion que muestre un solo elemento 
-            case "7":
+            case "6":   #CORRECCION : realizar aca una funcion que recorra, dentro de esa llamo a una funcion que muestre un solo elemento  
+                imprimir_con_promedio_legajo(promedios_guardados,nombres,notas,generos,legajos) #originalmente lo habia hecho en dos casos separados  
+            
+            case "7":  #CORRECCION: mostrar notas repetidas con titular de numero y cantidad de repeticiones
                 contador_de_notas(notas)
-                
-            case "8":
+            case "8":  #salir 
                 print("saliendo del programa ... ")
                 False
                 break
@@ -199,4 +193,4 @@ def menu_hardcodeado():
                 print("opcion invalida, intentelo nuevamente")
             
 
-menu_hardcodeado()
+#menu_hardcodeado()
